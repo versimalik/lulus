@@ -13,7 +13,7 @@ include "../database.php";
 			
 			while (($unData = fgetcsv($file, 10000, ";")) !== FALSE){
 				//query insert
-				$sql = "INSERT INTO un_siswa VALUES('$unData[0]','$unData[1]','$unData[2]','$unData[3]','$unData[4]','$unData[5]','$unData[6]','$unData[7]')";
+				$sql = "INSERT INTO un_siswa VALUES('$unData[0]','$unData[1]','$unData[2]','$unData[3]','$unData[4]','$unData[5]','$unData[6]','$unData[7]','$unData[8]','$unData[9]','$unData[10]','$unData[11]','$unData[12]','$unData[13]','$unData[14]','$unData[15]','$unData[16]','$unData[17]')";
 				$res = mysqli_query($db_conn,$sql);
 				
 				if(! $res){

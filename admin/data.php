@@ -34,22 +34,31 @@ include '_header.php';
 	</div>
 </div>
 <div class="row">
-	<div class="container">
-		<table class="table table-bordered">
+	<div class="container table-responsive">
+		<table class="table table-bordered" overflo>
 			<thead>
 				<tr>
 					<th rowspan="2">No. Ujian</th>
 					<th rowspan="2">Nama Siswa</th>
 					<th rowspan="2">Kompetensi Keahlian</th>
-					<th colspan="4">Nilai UN</th>
+					<th colspan="15">Nilai UN</th>
 					<th rowspan="2">Status</th>
 				</tr>
 				<tr>
-					<th>Bahasa Indonesia</th>
-					<th>Bahasa Inggris</th>
-					<th>Matematika</th>
-					<th>Kejuruan</th>
-				</tr>
+					<th>PAI</th>
+					<th>PKN</th>
+					<th>B. Indo</th>
+					<th>MTK</th>
+					<th>Sejarah</th>
+					<th>B. Inggris</th>
+					<th>Seni Budaya</th>
+					<th>PKWU</th>
+					<th>Penjaskes</th>
+					<th>MTKP</th>
+					<th>Biologi</th>
+					<th>Fisika</th>
+					<th>Kimia</th>
+					<th>Bahasa Arab</th>
 			</thead>
 			<tbody>
 			<?php
@@ -61,17 +70,28 @@ include '_header.php';
 					echo '<td>'.$data['no_ujian'].'</td>';
 					echo '<td>'.$data['nama'].'</td>';
 					echo '<td>'.$data['komli'].'</td>';
-					echo '<td>'.$data['n_bin'].'</td>';
-					echo '<td>'.$data['n_big'].'</td>';
-					echo '<td>'.$data['n_mat'].'</td>';
-					echo '<td>'.$data['n_kejuruan'].'</td>';
+					echo '<td>'.$data['n_pai'].'</td>';
+					echo '<td>'.$data['n_pkn'].'</td>';
+					echo '<td>'.$data['n_bindo'].'</td>';
+					echo '<td>'.$data['n_mtk'].'</td>';
+					echo '<td>'.$data['n_sejin'].'</td>';
+					echo '<td>'.$data['n_pkn'].'</td>';
+					echo '<td>'.$data['n_bing'].'</td>';
+					echo '<td>'.$data['n_sen'].'</td>';
+					echo '<td>'.$data['n_pkwu'].'</td>';
+					echo '<td>'.$data['n_penj'].'</td>';
+					echo '<td>'.$data['n_mtkp'].'</td>';
+					echo '<td>'.$data['n_bio'].'</td>';
+					echo '<td>'.$data['n_fis'].'</td>';
+					echo '<td>'.$data['n_kim'].'</td>';
+					echo '<td>'.$data['n_barab'].'</td>';
 					echo '<td>';
 					echo ($data['status']==1) ? 'Lulus' : '<em>Tidak Lulus</em>';
 					echo '</td>';
 					echo '</tr>';
 				}
 			} else {
-				echo '<tr><td colspan="8"><em>Belum ada data! Segera lakukan upload data.</em></td></tr>';
+				echo '<tr><td colspan="19"><em>Belum ada data! Segera lakukan upload data.</em></td></tr>';
 			}
 			?>
 			</tbody>

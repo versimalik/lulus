@@ -44,7 +44,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
     </nav>
     
     <div class="container">
-        <h2>Pengumuman Kelulusan <?=$hsl['tahun'] ?></h2>
+        <h2 align="center">Pengumuman Kelulusan <?=$hsl['tahun'] ?></h2>
 		<!-- countdown -->
 		
 		<div id="clock" class="lead"></div>
@@ -63,31 +63,84 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 			<table class="table table-bordered">
 				<tr><td>Nomor Ujian</td><td><?php echo $data['no_ujian']; ?></td></tr>
 				<tr><td>Nama Siswa</td><td><?php echo $data['nama']; ?></td></tr>
-				<tr><td>Kompetensi Keahlian</td><td><?php echo $data['komli']; ?></td></tr>
+				<tr><td>Kompetensi Keahlian</td><td><?php echo strtoupper($data['komli']); ?></td></tr>
 			</table>
 			<table class="table table-bordered">
 				<thead>
 				<tr>
-					<th>Bahasa Indonesia</th>
-					<th>Bahasa Inggris</th>
-					<th>Matematika</th>
-					<th>Kejuruan</th>
+					<th>Matan Pelajaran</th>
+					<th>Nilai</th>
 				</tr>
 				</thead>
 				<tbody>
-					<td><?php echo $data['n_bin']; ?></td>
-					<td><?php echo $data['n_big']; ?></td>
-					<td><?php echo $data['n_mat']; ?></td>
-					<td><?php echo $data['n_kejuruan']; ?></td>
+					<tr>
+						<td>Pendidikan Agama Islam</td>
+						<td><?php echo $data['n_pai']; ?></td>
+					</tr>
+					<tr>
+						<td>Pendidikan Kewarganegaraan</td>
+						<td><?php echo $data['n_pkn']; ?></td>
+					</tr>
+					<tr>
+						<td>Bahasa Indonesia</td>
+						<td><?php echo $data['n_bindo']; ?></td>
+					</tr>
+					<tr>
+						<td>Matematika</td>
+						<td><?php echo $data['n_mtk']; ?></td>
+					</tr>
+					<tr>
+						<td>Sejarah Indonesia</td>
+						<td><?php echo $data['n_sejin']; ?></td>
+					</tr>
+					<tr>
+						<td>Bahasa Inggris</td>
+						<td><?php echo $data['n_bing']; ?></td>
+					</tr>
+					<tr>
+						<td>Seni Budaya</td>
+						<td><?php echo $data['n_sen']; ?></td>
+					</tr>
+					<tr>
+						<td>PKWU</td>
+						<td><?php echo $data['n_pkwu']; ?></td>
+					</tr>
+					<tr>
+						<td>Pendidikan Jasmani dan Kesehatan</td>
+						<td><?php echo $data['n_penj']; ?></td>
+					</tr>
+					<tr>
+						<td>Matematika Peminatan</td>
+						<td><?php echo $data['n_mtkp']; ?></td>
+					</tr>
+					<tr>
+						<td>Biologi</td>
+						<td><?php echo $data['n_bio']; ?></td>
+					</tr>
+					<tr>
+						<td>Fisika</td>
+						<td><?php echo $data['n_fis']; ?></td>
+					</tr>
+					<tr>
+						<td>Kimia</td>
+						<td><?php echo $data['n_kim']; ?></td>
+					</tr>
+					<tr>
+						<td>Bahasa Arab</td>
+						<td><?php echo $data['n_barab']; ?></td>
+					</tr>
+
 				</tbody>
 			</table>
 			
 			<?php
+			
 			if( $data['status'] == 1 ){
 				echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
 			} else {
 				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
-			}	
+			}
+			echo '<a href="#" class="btn btn-primary btn-sm" role="alert"><strong>Klik Untuk Download SKL</strong></a>';
 			?>
 			
 		<?php
@@ -102,7 +155,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
         
         <form method="post">
             <div class="input-group">
-                <input type="text" name="nomor" class="form-control" data-mask="23-101-999-9" placeholder="Nomor Ujian" required>
+                <input type="text" name="nomor" class="form-control" data-mask="01-01-0058-9999-9" placeholder="Nomor Ujian" required>
                 <span class="input-group-btn">
                     <button class="btn btn-primary" type="submit" name="submit">Periksa!</button>
                 </span>
@@ -134,7 +187,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 		$( "#xpengumuman" ).show();
 		$( "#clock" ).hide();
 	} else {
-		$this.html(event.strftime('Pengumuman dapat dilihat: <span>%H Jam %M Menit %S Detik</span> lagi'));
+		$this.html(event.strftime('Pengumuman dapat dilihat: <span>%D Hari %H Jam %M Menit %S Detik</span> lagi'));
 		$( "#xpengumuman" ).hide();
 	}
 	});
