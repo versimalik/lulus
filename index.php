@@ -67,66 +67,85 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 			</table>
 			<table class="table table-bordered">
 				<thead>
-				<tr>
-					<th>Matan Pelajaran</th>
-					<th>Nilai</th>
-				</tr>
+				<!-- <tr> -->
+					<th rowspan="2">Matan Pelajaran</th>
+					<th colspan="2">Nilai</th>
+				<!-- </tr> -->
 				</thead>
 				<tbody>
 					<tr>
+						<td ></td>
+						<td>Rata Rata Raport</td>
+						<td>Ujian Sekolah</td>
+					</tr>
+					<tr>
 						<td>Pendidikan Agama Islam</td>
+						<td></td>
 						<td><?php echo $data['n_pai']; ?></td>
 					</tr>
 					<tr>
 						<td>Pendidikan Kewarganegaraan</td>
+						<td></td>
 						<td><?php echo $data['n_pkn']; ?></td>
 					</tr>
 					<tr>
 						<td>Bahasa Indonesia</td>
+						<td></td>
 						<td><?php echo $data['n_bindo']; ?></td>
 					</tr>
 					<tr>
 						<td>Matematika</td>
+						<td></td>
 						<td><?php echo $data['n_mtk']; ?></td>
 					</tr>
 					<tr>
 						<td>Sejarah Indonesia</td>
+						<td></td>
 						<td><?php echo $data['n_sejin']; ?></td>
 					</tr>
 					<tr>
 						<td>Bahasa Inggris</td>
+						<td></td>
 						<td><?php echo $data['n_bing']; ?></td>
 					</tr>
 					<tr>
 						<td>Seni Budaya</td>
+						<td></td>
 						<td><?php echo $data['n_sen']; ?></td>
 					</tr>
 					<tr>
 						<td>PKWU</td>
+						<td></td>
 						<td><?php echo $data['n_pkwu']; ?></td>
 					</tr>
 					<tr>
 						<td>Pendidikan Jasmani dan Kesehatan</td>
+						<td></td>
 						<td><?php echo $data['n_penj']; ?></td>
 					</tr>
 					<tr>
 						<td>Matematika Peminatan</td>
+						<td></td>
 						<td><?php echo $data['n_mtkp']; ?></td>
 					</tr>
 					<tr>
 						<td>Biologi</td>
+						<td></td>
 						<td><?php echo $data['n_bio']; ?></td>
 					</tr>
 					<tr>
 						<td>Fisika</td>
+						<td></td>
 						<td><?php echo $data['n_fis']; ?></td>
 					</tr>
 					<tr>
 						<td>Kimia</td>
+						<td></td>
 						<td><?php echo $data['n_kim']; ?></td>
 					</tr>
 					<tr>
 						<td>Bahasa Arab</td>
+						<td></td>
 						<td><?php echo $data['n_barab']; ?></td>
 					</tr>
 
@@ -140,9 +159,14 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 			} else {
 				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
 			}
-			echo '<a href="#" class="btn btn-primary btn-sm" role="alert"><strong>Klik Untuk Download SKL</strong></a>';
+			// echo '<a href="#" class="btn btn-primary btn-sm" role="alert"><strong>Klik Untuk Download SKL</strong></a>';
 			?>
 			
+			<form method="post" action="prosespdf.php">
+				<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
+				<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
+			</form>
+
 		<?php
 			} else {
 				echo 'nomor ujian yang anda inputkan tidak ditemukan! periksa kembali nomor ujian anda.';
