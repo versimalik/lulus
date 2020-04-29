@@ -35,7 +35,7 @@ include '_header.php';
 </div>
 <div class="row">
 	<div class="container table-responsive">
-		<table class="table table-bordered" overflo>
+		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th rowspan="2">No. Ujian</th>
