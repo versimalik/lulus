@@ -75,7 +75,7 @@ $html = '
 
 					.tablenilai
 					{
-						margin:5px 120px 0px 120px;
+						margin:20px 120px 0px 120px;
 						border-collapse: collapse;
 					}
 
@@ -232,9 +232,9 @@ $html.='
 	{
 $html.='
 								<tr>
-									<td class="text-center" width="5%">No</td>
-									<td class="text-center" width="85%">Mata Pelajaran</td>
-									<td class="text-center" width="10%">Nilai</td>
+									<td class="text-center" width="10%">No</td>
+									<td class="text-center" width="60%">Mata Pelajaran</td>
+									<td class="text-center" width="20%">Nilai</td>
 								</tr>
 								<tr>
 									<td colspan="3" class="text-center">Kelompok A (Wajib)</td>
@@ -331,7 +331,7 @@ $html.='
 									<td class="text-center">'.$data['n_sej'].'</td>
 								</tr>
 								<tr>
-									<td>12</td>
+									<td class="text-center">12</td>
 									<td>Sosiologi</td>
 									<td class="text-center">'.$data['n_sos'].'</td>
 								</tr>
