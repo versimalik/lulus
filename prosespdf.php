@@ -464,7 +464,7 @@ $html.='
 									<td class="text-center">'.$data['n_admu'].'</td>
 								</tr>
 								<tr>
-									<td class="text-center">13</td>
+									<td class="text-center">12</td>
 									<td>IPA</td>
 									<td class="text-center">'.$data['r_ipa'].'</td>
 									<td class="text-center">'.$data['n_ipa'].'</td>
