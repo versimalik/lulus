@@ -58,7 +58,7 @@ $html = '
 
 					.kopsedang
 					{
-						font-size: 16px;
+						font-size: 17px;
 						white-space:nowrap;
 					}
 
@@ -75,14 +75,14 @@ $html = '
 
 					.tablenilai
 					{
-						margin:20px 120px 0px 120px;
+						margin:5px 120px 0px 120px;
 						border-collapse: collapse;
 					}
 
 					.tablenilai td
 					{
 						border: 1px solid black;
-						padding: 5px;
+						padding: 3px;
 					}
 
 					.ttd
@@ -490,48 +490,48 @@ $html.='
 							</table>
 						</div>';
 
-// $html.='						
-// 						<div>
-// 							<table width="100%" border="0" class="ttd fontnormal">
-// 								<tr>
-// 									<td width="33%"></td>
-// 									<td width="29%"></td>
-// 									<td width="38%">
-// 										<div>Jakarta, 4 Mei 2020</div>
-// 										<br/>';
-// 	if($data['instansi']=='sma')
-// 	{
-// $html.='										
-// 										<div>Kepala SMA</div>
-// 										<div><img src="img/ttdpakyusuf.jpeg" height="90"/></div>
-// 										<div>Yusup Abdul Azis, S.Pd.I</div>
-// 									</td>
-// 								</tr>
-// 							</table>
-// 						</div>';
-// 	}
-// 	elseif($data['instansi']=='smk')
-// 	{
-// $html.='										
-// 										<div>Kepala SMK</div>
-// 										<div><img src="img/ttdpakmukidjo1.png" height="90"/></div>
-// 										<div>Drs. Mukidjo Martoyo, M.Pd</div>
-// 									</td>
-// 								</tr>
-// 							</table>
-// 						</div>';
-// 	}
-// 	elseif($data['instansi']=='smp')
-// 	{
-// $html.='										
-// 										<div>Kepala SMK</div>
-// 										<div><img src="img/ttdpaksutarno.png" height="90"/></div>
-// 										<div>Hadi Sutarno, S.Kom</div>
-// 									</td>
-// 								</tr>
-// 							</table>
-// 						</div>';
-// 	}
+$html.='						
+						<div>
+							<table width="100%" border="0" class="ttd fontnormal">
+								<tr>
+									<td width="33%"></td>
+									<td width="29%"></td>
+									<td width="38%">
+										<div>Jakarta, 2 Mei 2020</div>
+										<br/>';
+	if($data['instansi']=='sma')
+	{
+$html.='										
+										<div>Kepala SMA</div>
+										<!-- <div style="margin-top:30px;"><img src="img/ttdpakyusuf.jpeg" height="90"/></div>-->
+										<div style="margin-top:30px;">Yusup Abdul Azis, S.Pd.I</div>
+									</td>
+								</tr>
+							</table>
+						</div>';
+	}
+	elseif($data['instansi']=='smk')
+	{
+$html.='										
+										<div>Kepala SMK</div>
+										<!-- <div><img src="img/ttdpakmukidjo1.png" height="90"/></div>-->
+										<div style="margin-top:30px;">Drs. Mukidjo Martoyo, M.Pd</div>
+									</td>
+								</tr>
+							</table>
+						</div>';
+	}
+	elseif($data['instansi']=='smp')
+	{
+$html.='										
+										<div>Kepala SMK</div>
+										<!-- <div><img src="img/ttdpaksutarno.png" height="90"/></div>-->
+										<div>Hadi Sutarno, S.Kom</div>
+									</td>
+								</tr>
+							</table>
+						</div>';
+	}
 }
 // var_dump($html);
 // die();
