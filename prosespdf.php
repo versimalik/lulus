@@ -5,6 +5,8 @@ $nopes = $_POST['nopes'];
 require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
+
+$nolap = str_replace("-", "_", $nopes);
 $hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$nopes'");
 if(mysqli_num_rows($hasil) > 0)
 {
@@ -46,7 +48,7 @@ $html = '
 		<html>
 			<head>
 				<style>
-					html { margin: 35px; font-family: Arial, Helvetica, sans-serif;}
+					html { margin: 30px 35px 20px 35px; font-family: Arial, Helvetica, sans-serif;}
 					
 
 					.kopbesar
@@ -73,20 +75,20 @@ $html = '
 
 					.tablenilai
 					{
-						margin:20px 50px 0px 50px;
+						margin:5px 120px 0px 120px;
 						border-collapse: collapse;
 					}
 
 					.tablenilai td
 					{
 						border: 1px solid black;
-						padding: 0px;
+						padding: 2px;
 					}
 
 					.ttd
 					{
 						border-collapse: collapse;
-						margin:20px 50px 0px 50px;
+						margin:10px 50px 0px 50px;
 						padding: 0px;
 					}
 
@@ -230,9 +232,9 @@ $html.='
 	{
 $html.='
 								<tr>
-									<td class="text-center">No</td>
-									<td class="text-center">Mata Pelajaran</td>
-									<td class="text-center">Nilai</td>
+									<td class="text-center" width="5%">No</td>
+									<td class="text-center" width="85%">Mata Pelajaran</td>
+									<td class="text-center" width="10%">Nilai</td>
 								</tr>
 								<tr>
 									<td colspan="3" class="text-center">Kelompok A (Wajib)</td>
@@ -462,7 +464,7 @@ $html.='
 									<td class="text-center">'.$data['n_admu'].'</td>
 								</tr>
 								<tr>
-									<td class="text-center">12</td>
+									<td class="text-center">13</td>
 									<td>IPA</td>
 									<td class="text-center">'.$data['r_ipa'].'</td>
 									<td class="text-center">'.$data['n_ipa'].'</td>
@@ -488,21 +490,46 @@ $html.='
 							</table>
 						</div>
 						<div>
-							<table width="100%" border="1" class="ttd fontnormal">
+							<table width="100%" border="0" class="ttd fontnormal">
 								<tr>
 									<td width="33%"></td>
-									<td width="33%"></td>
-									<td width="33%">
+									<td width="29%"></td>
+									<td width="38%">
 										<div>Jakarta, 4 Mei 2020</div>
-										<br/>
-										<div>Kepala SMK</div>
+										<br/>';
+	if($data['instansi']=='sma')
+	{
+$html.='										
+										<div>Kepala SMA</div>
 										<div><img src="img/ttdpakyusuf.jpeg" height="90"/></div>
+										<div>Yusup Abdul Azis, S.Pd.I</div>
+									</td>
+								</tr>
+							</table>
+						</div>';
+	}
+	elseif($data['instansi']=='smk')
+	{
+$html.='										
+										<div>Kepala SMK</div>
+										<div><img src="img/ttdpakmukidjo1.png" height="90"/></div>
 										<div>Drs. Mukidjo Martoyo, M.Pd</div>
 									</td>
 								</tr>
 							</table>
-						</div>						
-		';
+						</div>';
+	}
+	elseif($data['instansi']=='smp')
+	{
+$html.='										
+										<div>Kepala SMK</div>
+										<div><img src="img/ttdpaksutarno.png" height="90"/></div>
+										<div>Hadi Sutarno, S.Kom</div>
+									</td>
+								</tr>
+							</table>
+						</div>';
+	}
 }
 // var_dump($html);
 // die();
@@ -513,10 +540,10 @@ $dompdf->setPaper('A4', 'potrait');
 
 $dompdf->render();
 
-// $dompdf->stream('testLaporan.pdf');	
-$dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+$dompdf->stream('SKL_'.$nolap.'.pdf');	
+// $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
 
-exit(0);	
+// exit(0);	
 			
 
  ?>
