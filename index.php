@@ -44,144 +44,205 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
     </nav>
     
     <div class="container">
-        <h2 align="center">Pengumuman Kelulusan <?=$hsl['tahun'] ?></h2>
+        <!-- <h2 align="center">Pengumuman Kelulusan <?=$hsl['tahun'] ?></h2> -->
+        <h3 align="center" style="font-weight: bold;">Pengumuman Kelulusan </h3>
+        <h3 align="center" style="font-weight: bold;">SMP IT - SMA - SMK YP IPPI Petojo Tahun 2019/2020</h3>
 		<!-- countdown -->
 		
 		<div id="clock" class="lead"></div>
 		
 		<div id="xpengumuman">
-		<?php
-		if(isset($_REQUEST['submit'])){
-			//tampilkan hasil queri jika ada
-			$no_ujian = $_REQUEST['nomor'];
+<?php
+	if(isset($_REQUEST['submit']))
+	{
+		//tampilkan hasil queri jika ada
+		$no_ujian = $_REQUEST['nomor'];
+		
+		$hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$no_ujian'");
+		if(mysqli_num_rows($hasil) > 0)
+		{
+			$data = mysqli_fetch_array($hasil);
 			
-			$hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$no_ujian'");
-			if(mysqli_num_rows($hasil) > 0){
-				$data = mysqli_fetch_array($hasil);
-				
-		?>
+?>
 			<table class="table table-bordered">
 				<tr>
 					<td>Nomor Ujian</td>
 					<td><?php echo $data['no_ujian']; ?></td>
 				</tr>
 				<tr>
-					<td>Nama Siswa</td>
-					<td><?php echo $data['nama']; ?></td>
+					<td>NISN</td>
+					<td><?php echo $data['nisn']; ?></td>
 				</tr>
 				<tr>
-					<td>Tempat, Tanggal Lahir</td>
-					<td></td>
+					<td>Nama Siswa</td>
+					<td><?php echo strtoupper($data['nama']); ?></td>
 				</tr>
 				<tr>
 					<?php
-						if($data['komli']=='ipa'||$data['komli']=='ips')
-						{?>
+						if($data['komli']=='MIPA'||$data['komli']=='IPS')
+						{
+					?>
 
 						<td>Jurusan</td>
-						<td><?php echo strtoupper($data['komli']); ?></td>
+						<td><?php echo "12 ".$data['komli']; ?></td>
 					<?php 
 						}
-						elseif ($data['komli']=='tkj'||$data['komli']=='tkj'||$data['komli']=='akl'||$data['komli']=='ak'||$data['komli']=='ap'||$data['komli']=='otkp'||$data['komli']=='pm'||$data['komli']=='bdp')
+						elseif ($data['komli']=='TKJ'||$data['komli']=='AP'||$data['komli']=='AK'||$data['komli']=='PM')
 						{?>
 						<td>Kompetensi Keahlian</td>
+						<td><?php echo "12 ".$data['komli']; ?></td>
 					<?php
 						} ?>
 				</tr>
 			</table>
 			<table class="table table-bordered">
-				<!-- <thead> -->
+			<?php
+				if($data['instansi']=="sma")
+				{
+			?>
 				<tr>
-					<td rowspan="2" class="text-center" style="vertical-align: middle;">Mata Pelajaran</td>
-					<td colspan="2" class="text-center">Nilai</td>
+					<td class="text-center" width="5%">No</td>
+					<td class="text-center" width="85%">Mata Pelajaran</td>
+					<td class="text-center" width="10%">Nilai</td>
 				</tr>
-				<!-- </thead> -->
-				<!-- <tbody> -->
-					<tr>
-						<td class="text-center">Rata Rata Raport</td>
-						<td class="text-center">Ujian Sekolah</td>
-					</tr>
-					<tr>
-						<td>Pendidikan Agama Islam</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_pai']; ?></td>
-					</tr>
-					<tr>
-						<td>Pendidikan Kewarganegaraan</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_pkn']; ?></td>
-					</tr>
-					<tr>
-						<td>Bahasa Indonesia</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_bindo']; ?></td>
-					</tr>
-					<tr>
-						<td>Matematika</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_mtk']; ?></td>
-					</tr>
-					<tr>
-						<td>Sejarah Indonesia</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_sejin']; ?></td>
-					</tr>
-					<tr>
-						<td>Bahasa Inggris</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_bing']; ?></td>
-					</tr>
-					<tr>
-						<td>Seni Budaya</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_sen']; ?></td>
-					</tr>
-					<tr>
-						<td>PKWU</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
-					</tr>
-					<tr>
-						<td>Pendidikan Jasmani dan Kesehatan</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_penj']; ?></td>
-					</tr>
-					<tr>
-						<td>Matematika Peminatan</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_mtkp']; ?></td>
-					</tr>
-					<tr>
-						<td>Biologi</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_bio']; ?></td>
-					</tr>
-					<tr>
-						<td>Fisika</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_fis']; ?></td>
-					</tr>
-					<tr>
-						<td>Kimia</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_kim']; ?></td>
-					</tr>
-					<tr>
-						<td>Bahasa Arab</td>
-						<td class="text-center"></td>
-						<td class="text-center"><?php echo $data['n_barab']; ?></td>
-					</tr>
-				<!-- </tbody> -->
+				<tr>
+					<td colspan="3" class="text-center">Kelompok A (Wajib)</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Pendidikan Agama dan Budi Pekerti</td>
+					<td class="text-center"><?php echo $data['n_pai']; ?></td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Pendidikan Kewarganegaraan</td>
+					<td class="text-center"><?php echo $data['n_pkn']; ?></td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Bahasa Indonesia</td>
+					<td class="text-center"><?php echo $data['n_bindo']; ?></td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Matematika</td>
+					<td class="text-center"><?php echo $data['n_mtk']; ?></td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Sejarah Indonesia</td>
+					<td class="text-center"><?php echo $data['n_sejin']; ?></td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Bahasa Inggris</td>
+					<td class="text-center"><?php echo $data['n_bing']; ?></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="text-center">Kelompok B (Wajib)</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Seni Budaya</td>
+					<td class="text-center"><?php echo $data['n_sen']; ?></td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>Pendidikan Jasmani dan Kesehatan</td>
+					<td class="text-center"><?php echo $data['n_penj']; ?></td>
+				</tr>				
+				<tr>
+					<td>9</td>
+					<td>Prakarya dan Kewirausahaan</td>
+					<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
+				</tr>
+				<tr>
+					<td colspan="3" class="text-center">Kelompok C (Peminatan)</td>
+				</tr>
+				<?php
+					if($data['komli']=="MIPA")
+					{
+				?>
+				<tr>
+					<td>10</td>
+					<td>Matematika</td>
+					<td class="text-center"><?php echo $data['n_mtkp']; ?></td>
+				</tr>
+				<tr>
+					<td>11</td>
+					<td>Biologi</td>
+					<td class="text-center"><?php echo $data['n_bio']; ?></td>
+				</tr>
+				<tr>
+					<td>12</td>
+					<td>Fisika</td>
+					<td class="text-center"><?php echo $data['n_fis']; ?></td>
+				</tr>
+				<tr>
+					<td>13</td>
+					<td>Kimia</td>
+					<td class="text-center"><?php echo $data['n_kim']; ?></td>
+				</tr>				
+				<?php
+					}
+					elseif ($data['komli']=="IPS") 
+					{
+				?>
+				<tr>
+					<td>10</td>
+					<td>Geografi</td>
+					<td class="text-center"><?php echo $data['n_geo']; ?></td>
+				</tr>
+				<tr>
+					<td>11</td>
+					<td>Sejarah</td>
+					<td class="text-center"><?php echo $data['n_sej']; ?></td>
+				</tr>
+				<tr>
+					<td>12</td>
+					<td>Sosiologi</td>
+					<td class="text-center"><?php echo $data['n_sos']; ?></td>
+				</tr>
+				<tr>
+					<td>13</td>
+					<td>Ekonomi</td>
+					<td class="text-center"><?php echo $data['n_eko']; ?></td>
+				</tr>
+				<?php
+					
+					}
+				?>
+				<tr>
+					<td colspan="3" class="text-center">Kelompok D (Pendalaman Minat)</td>
+				</tr>
+				<tr>
+					<td>14</td>
+					<td>Bahasa Arab</td>
+					<td class="text-center"><?php echo $data['n_barab']; ?></td>
+				</tr>
+			<?php
+
+				}
+				elseif ($data["instansi"]=="smk")
+				{
+					echo "wokeh";
+				}
+
+			?>
+
+				
 			</table>
 			
 			<?php
 			
-			if( $data['status'] == 1 ){
-				echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
-			} else {
-				echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
+				if( $data['status'] == 1 )
+				{
+					echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+				} else 
+
+				{
+					echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
 			}
-			// echo '<a href="#" class="btn btn-primary btn-sm" role="alert"><strong>Klik Untuk Download SKL</strong></a>';
 			?>
 			
 			<form method="post" action="prosespdf.php">
@@ -190,26 +251,31 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 			</form>
 
 		<?php
-			} else {
-				echo 'nomor ujian yang anda inputkan tidak ditemukan! periksa kembali nomor ujian anda.';
-				//tampilkan pop-up dan kembali tampilkan form
-			}
-		} else {
-			//tampilkan form input nomor ujian
-		?>
-        <p>Masukkan nomor ujianmu pada form yang disediakan.</p>
-        
-        <form method="post">
-            <div class="input-group">
-                <input type="text" name="nomor" class="form-control" data-mask="01-01-0058-9999-9" placeholder="Nomor Ujian" required>
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" type="submit" name="submit">Periksa!</button>
-                </span>
-            </div>
-        </form>
-		<?php
 		}
-		?>
+		else 
+		{
+			echo 'nomor ujian yang anda inputkan tidak ditemukan! periksa kembali nomor ujian anda.';
+			//tampilkan pop-up dan kembali tampilkan form
+		}
+	}
+	else
+	{
+		//tampilkan form input nomor ujian
+	?>
+    <p>Masukkan nomor ujianmu pada form yang disediakan.</p>
+    
+    <form method="post">
+        <div class="input-group">
+            <!-- <input type="text" name="nomor" class="form-control" data-mask="01-01-0058-9999-9" placeholder="Nomor Ujian" required> -->
+            <input type="text" name="nomor" class="form-control" placeholder="Nomor Ujian" required>
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" name="submit">Periksa!</button>
+            </span>
+        </div>
+    </form>
+	<?php
+	}
+?>
 		</div>
     </div><!-- /.container -->
 	

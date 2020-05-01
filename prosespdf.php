@@ -66,7 +66,7 @@ $html = '
 				</style>
 			</head>
 			<body>
-				<table border="0" width="100%" style="margin:0px 50px 0px 50px;">
+				<table border="1" width="100%" style="margin:0px 50px 0px 50px;">
 						<tr>
 							<td text-align:"center"><img src="img/logoippi.png" style="width:130px;"/>
 							</td>
@@ -87,7 +87,7 @@ $html = '
 						</tr>
 				</table>
 				<div></div>
-				<table class="fontnormal" border="0">
+				<table class="fontnormal" border="1">
 						<tr>
 							<td colspan="3">
 								<hr style="border-width:2px; width:100%;">
@@ -106,7 +106,7 @@ $html = '
 								</div>
 								<br/>
 								<div>
-									<table border="0" class="lulus">
+									<table border="1" class="lulus">
 										<tr>
 											<td>Nama</td>
 											<td>:</td>
@@ -268,7 +268,7 @@ $html = '
 							</table>
 						</div>
 						<div>
-							<table width="100%" border="0	" class="ttd fontnormal">
+							<table width="100%" border="1" class="ttd fontnormal">
 								<tr>
 									<td width="33%"></td>
 									<td width="33%"></td>
@@ -276,7 +276,7 @@ $html = '
 										<div>Jakarta, 4 Mei 2020</div>
 										<br/>
 										<div>Kepala SMK</div>
-										<div><img src="img/ttdpakmukidjo1.png" height="90"/></div>
+										<div><img src="img/ttdpakyusuf.jpeg" height="90"/></div>
 										<div>Drs. Mukidjo Martoyo, M.Pd</div>
 									</td>
 								</tr>
