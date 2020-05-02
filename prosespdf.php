@@ -145,7 +145,7 @@ $html.=	'
 						</tr>
 						<tr align="center">
 							<td colspan="3" style="line-height: 1;">
-								<span>SURAT KETERANGAN</span>
+								<span>SURAT KETERANGAN LULUS</span>
 								<span><hr style="width:35%;"></span>';
 	if($data['instansi']=="smp")
 	{
