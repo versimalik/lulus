@@ -25,11 +25,11 @@ CREATE TABLE IF NOT EXISTS `un_konfigurasi` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table kelulusan_test.un_konfigurasi: ~0 rows (approximately)
+-- Dumping data for table kelulusan_test.un_konfigurasi: ~1 rows (approximately)
 DELETE FROM `un_konfigurasi`;
 /*!40000 ALTER TABLE `un_konfigurasi` DISABLE KEYS */;
 INSERT INTO `un_konfigurasi` (`id`, `sekolah`, `tahun`, `tgl_pengumuman`) VALUES
-	(2, 'SMP - SMA - SMK YP IPPI JAKARTA', '2020', '2019-05-13 09:00:00');
+	(2, 'SMP IT - SMA - SMK YP IPPI JAKARTA', '2020', '2020-05-02 10:00:00');
 /*!40000 ALTER TABLE `un_konfigurasi` ENABLE KEYS */;
 
 -- Dumping structure for table kelulusan_test.un_siswa
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `un_siswa` (
   PRIMARY KEY (`no_ujian`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table kelulusan_test.un_siswa: ~584 rows (approximately)
+-- Dumping data for table kelulusan_test.un_siswa: ~626 rows (approximately)
 DELETE FROM `un_siswa`;
 /*!40000 ALTER TABLE `un_siswa` DISABLE KEYS */;
 INSERT INTO `un_siswa` (`no_ujian`, `nama`, `kelas`, `nis`, `nisn`, `komli`, `instansi`, `n_pai`, `n_pkn`, `n_bindo`, `n_mtk`, `n_sejin`, `n_bing`, `n_sen`, `n_penj`, `n_pkwu`, `n_mtkp`, `n_bio`, `n_fis`, `n_kim`, `n_geo`, `n_sej`, `n_sos`, `n_eko`, `n_barab`, `n_simdig`, `n_ekob`, `n_admu`, `n_ipa`, `n_c2`, `n_c3`, `r_pai`, `r_pkn`, `r_bindo`, `r_mtk`, `r_sejin`, `r_bing`, `r_sen`, `r_penj`, `r_pkwu`, `r_mtkp`, `r_bio`, `r_fis`, `r_kim`, `r_geo`, `r_sej`, `r_sos`, `r_eko`, `r_barab`, `r_simdig`, `r_ekob`, `r_admu`, `r_ipa`, `r_c2`, `r_c3`, `status`, `skl`) VALUES
@@ -734,7 +734,7 @@ CREATE TABLE IF NOT EXISTS `un_user` (
   PRIMARY KEY (`UID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table kelulusan_test.un_user: ~0 rows (approximately)
+-- Dumping data for table kelulusan_test.un_user: ~1 rows (approximately)
 DELETE FROM `un_user`;
 /*!40000 ALTER TABLE `un_user` DISABLE KEYS */;
 INSERT INTO `un_user` (`UID`, `username`, `password`) VALUES
