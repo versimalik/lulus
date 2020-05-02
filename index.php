@@ -390,11 +390,25 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 					echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
 			}
 			?>
-			
-			<form method="post" action="prosespdf.php">
-				<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
-				<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
-			</form>
+			<?php
+				if($data['skl']==1)
+				{
+			?>
+
+				<form method="post" action="prosespdf.php">
+					<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
+					<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
+				</form>
+
+			<?php
+				}
+				else
+				{
+					echo '<div class="alert alert-danger" role="alert">Silahkan Hubungi Wali Kelas Untuk Mendownload SKL!</div>';
+				}
+
+
+			?>
 
 		<?php
 		}
