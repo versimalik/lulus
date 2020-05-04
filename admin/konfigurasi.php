@@ -14,8 +14,14 @@ include '_header.php';
       $cfgSekolah = $_REQUEST['cfgSekolah'];
       $cfgTahun = $_REQUEST['cfgTahun'];
       $cfgTgl = $_REQUEST['cfgTanggal'].' '.$_REQUEST['cfgJam'];
+      $cfgsmpcari = $_REQUEST['cfgsmpcari'];
+      $cfgsmacari = $_REQUEST['cfgsmacari'];
+      $cfgsmkcari = $_REQUEST['cfgsmkcari'];
+      $cfgsmpnilai = $_REQUEST['cfgsmpnilai'];
+      $cfgsmanilai = $_REQUEST['cfgsmanilai'];
+      $cfgsmknilai = $_REQUEST['cfgsmknilai'];
 
-      $qCfg = "UPDATE un_konfigurasi SET sekolah='$cfgSekolah',tahun='$cfgTahun',tgl_pengumuman='$cfgTgl' WHERE id='$cfgID'";
+      $qCfg = "UPDATE un_konfigurasi SET sekolah='$cfgSekolah',tahun='$cfgTahun',tgl_pengumuman='$cfgTgl',smpcari='$cfgsmpcari',smacari='$cfgsmacari',smkcari='$cfgsmkcari',smpnilai='$cfgsmpnilai',smanilai='$cfgsmanilai',smknilai='$cfgsmknilai' WHERE id='$cfgID'";
       $upCfg = mysqli_query($db_conn,$qCfg);
       sleep(2);
     }
@@ -49,6 +55,156 @@ include '_header.php';
       <input type="time" name="cfgJam" class="form-control" value="<?=date('H:i',strtotime($hsl['tgl_pengumuman'])) ?>" readonly>
     </div>
   </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Pencarian untuk SMP</label>
+    <div class="col-sm-3">
+      <select disabled  name="cfgsmpcari" class="form-control">
+      <?php
+        if($hsl['smpcari']==1)
+        {
+      ?>
+        <option value="1" selected>Aktif</option>
+        <option value="0">Tidak Aktif</option>        
+      <?php
+        }
+        else
+        {
+      ?>        
+        <option value="1">Aktif</option>
+        <option value="0" selected>Tidak Aktif</option>
+      <?php
+        }
+      ?>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Pencarian untuk SMA</label>
+    <div class="col-sm-3">
+      <select disabled  name="cfgsmacari" class="form-control">
+      <?php
+        if($hsl['smacari']==1)
+        {
+      ?>
+
+        <option value="1" selected>Aktif</option>
+        <option value="0">Tidak Aktif</option>        
+      <?php
+        }
+        else
+        {
+      ?>        
+        <option value="1">Aktif</option>
+        <option value="0" selected>Tidak Aktif</option>
+      <?php
+        }
+      ?>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Pencarian untuk SMK</label>
+    <div class="col-sm-3">
+      <select disabled  name="cfgsmkcari" class="form-control">
+      <?php
+        if($hsl['smkcari']==1)
+        {
+      ?>
+
+        <option value="1" selected>Aktif</option>
+        <option value="0">Tidak Aktif</option>        
+      <?php
+        }
+        else
+        {
+      ?>        
+        <option value="1">Aktif</option>
+        <option value="0" selected>Tidak Aktif</option>
+      <?php
+        }
+      ?>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Cetak SKL SMP</label>
+    <div class="col-sm-3">
+      <select disabled  name="cfgsmpnilai" class="form-control">
+      <?php
+        if($hsl['smpnilai']==1)
+        {
+      ?>
+
+        <option value="1" selected>Aktif</option>
+        <option value="0">Tidak Aktif</option>        
+      <?php
+        }
+        else
+        {
+      ?>        
+        <option value="1">Aktif</option>
+        <option value="0" selected>Tidak Aktif</option>
+      <?php
+        }
+      ?>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Cetak SKL SMA</label>
+    <div class="col-sm-3">
+      <select disabled  name="cfgsmanilai" class="form-control">
+      <?php
+        if($hsl['smanilai']==1)
+        {
+      ?>
+
+        <option value="1" selected>Aktif</option>
+        <option value="0">Tidak Aktif</option>        
+      <?php
+        }
+        else
+        {
+      ?>        
+        <option value="1">Aktif</option>
+        <option value="0" selected>Tidak Aktif</option>
+      <?php
+        }
+      ?>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Cetak SKL SMA</label>
+    <div class="col-sm-3">
+      <select disabled  name="cfgsmknilai" class="form-control">
+      <?php
+        if($hsl['smknilai']==1)
+        {
+      ?>
+
+        <option value="1" selected>Aktif</option>
+        <option value="0">Tidak Aktif</option>        
+      <?php
+        }
+        else
+        {
+      ?>        
+        <option value="1">Aktif</option>
+        <option value="0" selected>Tidak Aktif</option>
+      <?php
+        }
+      ?>
+      </select>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <button type="submit" name="submit" class="btn btn-primary" disabled="disabled">Simpan</button>
@@ -61,6 +217,7 @@ include '_header.php';
 $('button[name="submit"]').prop('disabled', true);
 $('#btEnable').click(function() {
   $("input").removeAttr('readonly');
+  $("select").removeAttr('disabled');
   $('button[name="submit"]').removeAttr('disabled');
 });
 </script>

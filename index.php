@@ -57,360 +57,435 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 	{
 		//tampilkan hasil queri jika ada
 		$no_ujian = $_REQUEST['nomor'];
+		$nisn= $_REQUEST['nisn'];
 		
-		$hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$no_ujian'");
+		$hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$no_ujian' AND nisn='$nisn'");
 		if(mysqli_num_rows($hasil) > 0)
 		{
 			$data = mysqli_fetch_array($hasil);
-			
-?>
-			<table class="table table-bordered">
-				<tr>
-					<td>Nomor Ujian</td>
-					<td><?php echo $data['no_ujian']; ?></td>
-				</tr>
-				<tr>
-					<td>NISN</td>
-					<td><?php echo $data['nisn']; ?></td>
-				</tr>
-				<tr>
-					<td>Nama Siswa</td>
-					<td><?php echo strtoupper($data['nama']); ?></td>
-				</tr>
-				<tr>
-					<?php
-						if($data['komli']=='MIPA'||$data['komli']=='IPS')
-						{
-					?>
 
-						<td>Jurusan</td>
-						<td><?php echo $data['komli']; ?></td>
-					<?php 
-						}
-						elseif ($data['komli']=='TKJ'||$data['komli']=='AP'||$data['komli']=='AK'||$data['komli']=='PM')
-						{?>
-						<td>Kompetensi Keahlian</td>
-						<?php
-							$jur="";
-							if($data['komli']=="TKJ")
-							{
-								$jur="Teknik Komputer dan Jaringan";
-							}
-							elseif ($data['komli']=="AP")
-							{
-								$jur = "Otomatisasi dan Tata Kelola Perkantoran";
-							}
-							elseif ($data['komli']=="AK")
-							{
-								$jur = "Akuntansi Keuangan dan Lembaga";
-							}
-							elseif ($data['komli']=="PM")
-							{
-								$jur = "Bisnis Daring dan Pemasaran";
-							}
-						?>
-						<td><?php echo $jur; ?></td>
-					<?php
-						} ?>
-				</tr>
-			</table>
-			<table class="table table-bordered">
-			<?php
-				if($data['instansi']=="sma")
+
+			$carismp = $hsl['smpcari'];
+			$carisma = $hsl['smacari'];
+			$carismk = $hsl['smkcari'];
+
+			$sklsmp = $hsl['smpnilai'];
+			$sklsma = $hsl['smanilai'];
+			$sklsmk = $hsl['smknilai'];
+
+			$belum = '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['instansi']).' belum tersedia.</div>';
+
+			if($data['instansi']=="smp")
+			{
+				if($carismp==0)
 				{
-			?>
-				<tr>
-					<td class="text-center" width="5%">No</td>
-					<td class="text-center" width="85%">Mata Pelajaran</td>
-					<td class="text-center" width="10%">Nilai</td>
-				</tr>
-				<tr>
-					<td colspan="3" class="text-center">Kelompok A (Wajib)</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Pendidikan Agama dan Budi Pekerti</td>
-					<td class="text-center"><?php echo $data['n_pai']; ?></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Pendidikan Kewarganegaraan</td>
-					<td class="text-center"><?php echo $data['n_pkn']; ?></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Bahasa Indonesia</td>
-					<td class="text-center"><?php echo $data['n_bindo']; ?></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Matematika</td>
-					<td class="text-center"><?php echo $data['n_mtk']; ?></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Sejarah Indonesia</td>
-					<td class="text-center"><?php echo $data['n_sejin']; ?></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>Bahasa Inggris</td>
-					<td class="text-center"><?php echo $data['n_bing']; ?></td>
-				</tr>
-				<tr>
-					<td colspan="3" class="text-center">Kelompok B (Wajib)</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>Seni Budaya</td>
-					<td class="text-center"><?php echo $data['n_sen']; ?></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>Penjaskes</td>
-					<td class="text-center"><?php echo $data['n_penj']; ?></td>
-				</tr>				
-				<tr>
-					<td>9</td>
-					<td>Prakarya dan Kewirausahaan</td>
-					<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
-				</tr>
-				<tr>
-					<td colspan="3" class="text-center">Kelompok C (Peminatan)</td>
-				</tr>
-				<?php
-					if($data['komli']=="MIPA")
-					{
-				?>
-				<tr>
-					<td>10</td>
-					<td>Matematika</td>
-					<td class="text-center"><?php echo $data['n_mtkp']; ?></td>
-				</tr>
-				<tr>
-					<td>11</td>
-					<td>Biologi</td>
-					<td class="text-center"><?php echo $data['n_bio']; ?></td>
-				</tr>
-				<tr>
-					<td>12</td>
-					<td>Fisika</td>
-					<td class="text-center"><?php echo $data['n_fis']; ?></td>
-				</tr>
-				<tr>
-					<td>13</td>
-					<td>Kimia</td>
-					<td class="text-center"><?php echo $data['n_kim']; ?></td>
-				</tr>				
-				<?php
-					}
-					elseif ($data['komli']=="IPS") 
-					{
-				?>
-				<tr>
-					<td>10</td>
-					<td>Geografi</td>
-					<td class="text-center"><?php echo $data['n_geo']; ?></td>
-				</tr>
-				<tr>
-					<td>11</td>
-					<td>Sejarah</td>
-					<td class="text-center"><?php echo $data['n_sej']; ?></td>
-				</tr>
-				<tr>
-					<td>12</td>
-					<td>Sosiologi</td>
-					<td class="text-center"><?php echo $data['n_sos']; ?></td>
-				</tr>
-				<tr>
-					<td>13</td>
-					<td>Ekonomi</td>
-					<td class="text-center"><?php echo $data['n_eko']; ?></td>
-				</tr>
-				<?php
-					
-					}
-				?>
-				<tr>
-					<td colspan="3" class="text-center">Kelompok D (Pendalaman Minat)</td>
-				</tr>
-				<tr>
-					<td>14</td>
-					<td>Bahasa Arab</td>
-					<td class="text-center"><?php echo $data['n_barab']; ?></td>
-				</tr>
-			<?php
-
-				}
-				elseif ($data["instansi"]=="smk")
-				{
-			?>
-				<tr>
-					<td class="text-center" rowspan="2" style="vertical-align: middle;">No</td>
-					<td class="text-center" rowspan="2" style="vertical-align: middle;">Mata Pelajaran</td>
-					<td class="text-center" colspan="2">Nilai</td>
-				</tr>
-				<tr>
-					<td class="text-center">Rata-Rata Raport</td>
-					<td class="text-center">Ujian Sekolah</td>
-				</tr>
-				<tr>
-					<td colspan="4">A. Muatan Nasional</td>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>Pendidikan Agama dan Budi Pekerti</td>
-					<td class="text-center"><?php echo $data['r_pai']; ?></td>
-					<td class="text-center"><?php echo $data['n_pai']; ?></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Pendidikan Kewarganegaraan</td>
-					<td class="text-center"><?php echo $data['r_pkn']; ?></td>
-					<td class="text-center"><?php echo $data['n_pkn']; ?></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>Bahasa Indonesia</td>
-					<td class="text-center"><?php echo $data['r_bindo']; ?></td>
-					<td class="text-center"><?php echo $data['n_bindo']; ?></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>Matematika</td>
-					<td class="text-center"><?php echo $data['r_mtk']; ?></td>
-					<td class="text-center"><?php echo $data['n_mtk']; ?></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>Sejarah Indonesia</td>
-					<td class="text-center"><?php echo $data['r_sejin']; ?></td>
-					<td class="text-center"><?php echo $data['n_sejin']; ?></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>Bahasa Inggris</td>
-					<td class="text-center"><?php echo $data['r_bing']; ?></td>
-					<td class="text-center"><?php echo $data['n_bing']; ?></td>
-				</tr>
-				<tr>
-					<td colspan="4">B. Muatan Kewilayahan</td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>Seni Budaya</td>
-					<td class="text-center"><?php echo $data['r_sen']; ?></td>
-					<td class="text-center"><?php echo $data['n_sen']; ?></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
-					<td class="text-center"><?php echo $data['r_penj']; ?></td>
-					<td class="text-center"><?php echo $data['n_penj']; ?></td>
-				</tr>
-				<tr>
-					<td colspan="4">C. Muatan Peminatan Kejuruan</td>
-				</tr>
-				<tr>
-					<td colspan="4">C1. Bidang Keahlian</td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>Simulasi Digital</td>
-					<td class="text-center"><?php echo $data['r_simdig']; ?></td>
-					<td class="text-center"><?php echo $data['n_simdig']; ?></td>
-				</tr>
-				<?php
-					if($data['komli']=="TKJ")
-					{
-						echo "TKJ";
-				?>
-				<tr>
-					<td>10</td>
-					<td>Fisika</td>
-					<td class="text-center"><?php echo $data['r_fis']; ?></td>
-					<td class="text-center"><?php echo $data['n_fis']; ?></td>
-				</tr>
-				<tr>
-					<td>11</td>
-					<td>Kimia</td>
-					<td class="text-center"><?php echo $data['r_kim']; ?></td>
-					<td class="text-center"><?php echo $data['n_kim']; ?></td>
-				</tr>
-				<?php
-					}
-					else
-					{
-				?>
-				<tr>
-					<td>10</td>
-					<td>Ekonomi Bisnis</td>
-					<td class="text-center"><?php echo $data['r_ekob']; ?></td>
-					<td class="text-center"><?php echo $data['n_ekob']; ?></td>
-				</tr>
-				<tr>
-					<td>11</td>
-					<td>Administrasi Umum</td>
-					<td class="text-center"><?php echo $data['r_admu']; ?></td>
-					<td class="text-center"><?php echo $data['n_admu']; ?></td>
-				</tr>
-				<tr>
-					<td>12</td>
-					<td>IPA</td>
-					<td class="text-center"><?php echo $data['r_ipa']; ?></td>
-					<td class="text-center"><?php echo $data['n_ipa']; ?></td>
-				</tr>
-				<?php
-					}
-				?>
-				<tr>
-					<td colspan="2">C2. Dasar Program Keahlian</td>
-					<td class="text-center"><?php echo $data['r_c2']; ?></td>
-					<td class="text-center"><?php echo $data['n_c2']; ?></td>
-				</tr>
-				<tr>
-					<td colspan="2">C3. Kompetensi Keahlian</td>
-					<td class="text-center"><?php echo $data['r_c3']; ?></td>
-					<td class="text-center"><?php echo $data['n_c3']; ?></td>
-				</tr>
-			<?php
-				}
-
-			?>				
-			</table>
-			
-			<?php
-			
-				if( $data['status'] == 1 )
-				{
-					echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
-				} else 
-
-				{
-					echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
-			}
-			?>
-			<?php
-				if($data['skl']==1)
-				{
-			?>
-
-				<form method="post" action="prosespdf.php">
-					<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
-					<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
-				</form>
-
-			<?php
+					echo $belum;
 				}
 				else
 				{
-					echo '<div class="alert alert-danger" role="alert">Silahkan Hubungi Wali Kelas Untuk Mendownload SKL!</div>';
+					echo $belum;
 				}
+			}
+			elseif ($data['instansi']=="sma")
+			{
+				if($carisma==0)
+				{
+					echo $belum;
+				}
+				else
+				{
+					if($data['skl']==0)
+					{
+						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
+					}
+					else
+					{
+?>
+						<table class="table table-bordered">
+							<tr>
+								<td>Nomor Ujian</td>
+								<td><?php echo $data['no_ujian']; ?></td>
+							</tr>
+							<tr>
+								<td>NISN</td>
+								<td><?php echo $data['nisn']; ?></td>
+							</tr>
+							<tr>
+								<td>Nama Siswa</td>
+								<td><?php echo strtoupper($data['nama']); ?></td>
+							</tr>
+							<tr>
+								<td>Jurusan</td>
+								<td><?php echo $data['komli']; ?></td>
+							</tr>
+						</table>
+						<table class="table table-bordered">
+							<tr>
+								<td class="text-center" width="5%">No</td>
+								<td class="text-center" width="85%">Mata Pelajaran</td>
+								<td class="text-center" width="10%">Nilai</td>
+							</tr>
+							<tr>
+								<td colspan="3" class="text-center">Kelompok A (Wajib)</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>Pendidikan Agama dan Budi Pekerti</td>
+								<td class="text-center"><?php echo $data['n_pai']; ?></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Pendidikan Kewarganegaraan</td>
+								<td class="text-center"><?php echo $data['n_pkn']; ?></td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Bahasa Indonesia</td>
+								<td class="text-center"><?php echo $data['n_bindo']; ?></td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Matematika</td>
+								<td class="text-center"><?php echo $data['n_mtk']; ?></td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>Sejarah Indonesia</td>
+								<td class="text-center"><?php echo $data['n_sejin']; ?></td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>Bahasa Inggris</td>
+								<td class="text-center"><?php echo $data['n_bing']; ?></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="text-center">Kelompok B (Wajib)</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>Seni Budaya</td>
+								<td class="text-center"><?php echo $data['n_sen']; ?></td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>Penjaskes</td>
+								<td class="text-center"><?php echo $data['n_penj']; ?></td>
+							</tr>				
+							<tr>
+								<td>9</td>
+								<td>Prakarya dan Kewirausahaan</td>
+								<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="text-center">Kelompok C (Peminatan)</td>
+							</tr>
+<?php
+								if($data['komli']=="MIPA")
+								{
+?>
+							<tr>
+								<td>10</td>
+								<td>Matematika</td>
+								<td class="text-center"><?php echo $data['n_mtkp']; ?></td>
+							</tr>
+							<tr>
+								<td>11</td>
+								<td>Biologi</td>
+								<td class="text-center"><?php echo $data['n_bio']; ?></td>
+							</tr>
+							<tr>
+								<td>12</td>
+								<td>Fisika</td>
+								<td class="text-center"><?php echo $data['n_fis']; ?></td>
+							</tr>
+							<tr>
+								<td>13</td>
+								<td>Kimia</td>
+								<td class="text-center"><?php echo $data['n_kim']; ?></td>
+							</tr>				
+<?php
+								}
+								elseif ($data['komli']=="IPS") 
+								{
+?>
+							<tr>
+								<td>10</td>
+								<td>Geografi</td>
+								<td class="text-center"><?php echo $data['n_geo']; ?></td>
+							</tr>
+							<tr>
+								<td>11</td>
+								<td>Sejarah</td>
+								<td class="text-center"><?php echo $data['n_sej']; ?></td>
+							</tr>
+							<tr>
+								<td>12</td>
+								<td>Sosiologi</td>
+								<td class="text-center"><?php echo $data['n_sos']; ?></td>
+							</tr>
+							<tr>
+								<td>13</td>
+								<td>Ekonomi</td>
+								<td class="text-center"><?php echo $data['n_eko']; ?></td>
+							</tr>
+<?php
+								
+								}
+?>
+							<tr>
+								<td colspan="3" class="text-center">Kelompok D (Pendalaman Minat)</td>
+							</tr>
+							<tr>
+								<td>14</td>
+								<td>Bahasa Arab</td>
+								<td class="text-center"><?php echo $data['n_barab']; ?></td>
+							</tr>
+						</table>
+						
+<?php
+						if( $data['status'] == 1 )
+						{
+							echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+						} else 
+
+						{
+							echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
+						}
+
+						if($sklsma==0)
+						{
+							echo '<div class="alert alert-danger" role="alert">Pencetakan SKL untuk '.strtoupper($data['instansi']).' belum tersedia. Mohon tunggu informasi selanjutnya!</div>';
+						}
+						else
+						{
+?>
+							<form method="post" action="prosespdf.php">
+								<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
+								<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
+							</form>
+<?php
+						}
+					}
+				}
+			}
+			elseif($data['instansi']=="smk")
+			{
+				if($carismk==0)
+				{
+					echo $belum;
+				}
+				else
+				{
+					if($data['skl']==0)
+					{
+						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
+					}
+					else
+					{
+?>
+					<table class="table table-bordered">
+						<tr>
+							<td>Nomor Ujian</td>
+							<td><?php echo $data['no_ujian']; ?></td>
+						</tr>
+						<tr>
+							<td>NISN</td>
+							<td><?php echo $data['nisn']; ?></td>
+						</tr>
+						<tr>
+							<td>Nama Siswa</td>
+							<td><?php echo strtoupper($data['nama']); ?></td>
+						</tr>
+						<tr>
+							<td>Kompetensi Keahlian</td>
+<?php
+									$jur="";
+									if($data['komli']=="TKJ")
+									{
+										$jur="Teknik Komputer dan Jaringan";
+									}
+									elseif ($data['komli']=="AP")
+									{
+										$jur = "Otomatisasi dan Tata Kelola Perkantoran";
+									}
+									elseif ($data['komli']=="AK")
+									{
+										$jur = "Akuntansi Keuangan dan Lembaga";
+									}
+									elseif ($data['komli']=="PM")
+									{
+										$jur = "Bisnis Daring dan Pemasaran";
+									}
+?>
+							<td><?php echo $jur; ?></td>
+						</tr>
+					</table>
+					<table class="table table-bordered">
+						<tr>
+							<td class="text-center" rowspan="2" style="vertical-align: middle;">No</td>
+							<td class="text-center" rowspan="2" style="vertical-align: middle;">Mata Pelajaran</td>
+							<td class="text-center" colspan="2">Nilai</td>
+						</tr>
+						<tr>
+							<td class="text-center">Rata-Rata Raport</td>
+							<td class="text-center">Ujian Sekolah</td>
+						</tr>
+						<tr>
+							<td colspan="4">A. Muatan Nasional</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>Pendidikan Agama dan Budi Pekerti</td>
+							<td class="text-center"><?php echo $data['r_pai']; ?></td>
+							<td class="text-center"><?php echo $data['n_pai']; ?></td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Pendidikan Kewarganegaraan</td>
+							<td class="text-center"><?php echo $data['r_pkn']; ?></td>
+							<td class="text-center"><?php echo $data['n_pkn']; ?></td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Bahasa Indonesia</td>
+							<td class="text-center"><?php echo $data['r_bindo']; ?></td>
+							<td class="text-center"><?php echo $data['n_bindo']; ?></td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Matematika</td>
+							<td class="text-center"><?php echo $data['r_mtk']; ?></td>
+							<td class="text-center"><?php echo $data['n_mtk']; ?></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>Sejarah Indonesia</td>
+							<td class="text-center"><?php echo $data['r_sejin']; ?></td>
+							<td class="text-center"><?php echo $data['n_sejin']; ?></td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>Bahasa Inggris</td>
+							<td class="text-center"><?php echo $data['r_bing']; ?></td>
+							<td class="text-center"><?php echo $data['n_bing']; ?></td>
+						</tr>
+						<tr>
+							<td colspan="4">B. Muatan Kewilayahan</td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td>Seni Budaya</td>
+							<td class="text-center"><?php echo $data['r_sen']; ?></td>
+							<td class="text-center"><?php echo $data['n_sen']; ?></td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
+							<td class="text-center"><?php echo $data['r_penj']; ?></td>
+							<td class="text-center"><?php echo $data['n_penj']; ?></td>
+						</tr>
+						<tr>
+							<td colspan="4">C. Muatan Peminatan Kejuruan</td>
+						</tr>
+						<tr>
+							<td colspan="4">C1. Bidang Keahlian</td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td>Simulasi Digital</td>
+							<td class="text-center"><?php echo $data['r_simdig']; ?></td>
+							<td class="text-center"><?php echo $data['n_simdig']; ?></td>
+						</tr>
+<?php
+							if($data['komli']=="TKJ")
+							{
+								echo "TKJ";
+?>
+						<tr>
+							<td>10</td>
+							<td>Fisika</td>
+							<td class="text-center"><?php echo $data['r_fis']; ?></td>
+							<td class="text-center"><?php echo $data['n_fis']; ?></td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>Kimia</td>
+							<td class="text-center"><?php echo $data['r_kim']; ?></td>
+							<td class="text-center"><?php echo $data['n_kim']; ?></td>
+						</tr>
+<?php
+							}
+							else
+							{
+?>
+						<tr>
+							<td>10</td>
+							<td>Ekonomi Bisnis</td>
+							<td class="text-center"><?php echo $data['r_ekob']; ?></td>
+							<td class="text-center"><?php echo $data['n_ekob']; ?></td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>Administrasi Umum</td>
+							<td class="text-center"><?php echo $data['r_admu']; ?></td>
+							<td class="text-center"><?php echo $data['n_admu']; ?></td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td>IPA</td>
+							<td class="text-center"><?php echo $data['r_ipa']; ?></td>
+							<td class="text-center"><?php echo $data['n_ipa']; ?></td>
+						</tr>
+<?php
+							}
+?>
+						<tr>
+							<td colspan="2">C2. Dasar Program Keahlian</td>
+							<td class="text-center"><?php echo $data['r_c2']; ?></td>
+							<td class="text-center"><?php echo $data['n_c2']; ?></td>
+						</tr>
+						<tr>
+							<td colspan="2">C3. Kompetensi Keahlian</td>
+							<td class="text-center"><?php echo $data['r_c3']; ?></td>
+							<td class="text-center"><?php echo $data['n_c3']; ?></td>
+						</tr>			
+					</table>
+					
+<?php
+					
+						if( $data['status'] == 1 )
+						{
+							echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+						} else 
+
+						{
+							echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
+						}
+?>
 
 
-			?>
+<?php
+					if($sklsmk==0)
+					{
+						echo '<div class="alert alert-danger" role="alert">Pencetakan SKL untuk '.strtoupper($data['instansi']).' belum tersedia. Mohon tunggu informasi selanjutnya!</div>';
+					}
+					else
+					{
+?>
 
-		<?php
+						<form method="post" action="prosespdf.php">
+							<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
+							<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
+						</form>
+<?php
+					}
+				}
+			}
+		}
+?>
+			
+	
+<?php
 		}
 		else 
 		{
@@ -427,10 +502,11 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
     <form method="post">
         <div class="input-group">
             <!-- <input type="text" name="nomor" class="form-control" data-mask="01-01-0058-9999-9" placeholder="Nomor Ujian" required> -->
+            <input type="text" name="nisn" class="form-control" placeholder="NISN" required>
             <input type="text" name="nomor" class="form-control" placeholder="Nomor Ujian" required>
-            <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit" name="submit">Periksa!</button>
-            </span>
+            <!-- <span class="input-group-btn"> -->
+                <button class="btn btn-primary btn-block" type="submit" name="submit">Periksa!</button>
+            <!-- </span> -->
         </div>
     </form>
 	<?php
