@@ -281,7 +281,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 					if($data['skl']==0)
 					{
 						echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
-						
+
 						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
 					}
 					else
@@ -507,7 +507,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
         <div class="input-group">
             <!-- <input type="text" name="nomor" class="form-control" data-mask="01-01-0058-9999-9" placeholder="Nomor Ujian" required> -->
             <input type="text" name="nisn" class="form-control" placeholder="NISN" required>
-            <input type="text" name="nomor" class="form-control" placeholder="Nomor Ujian" required>
+            <input type="text" name="nomor" class="form-control" placeholder="Nomor Ujian : K0101XXXXXXXXX" required>
             <!-- <span class="input-group-btn"> -->
                 <button class="btn btn-primary btn-block" type="submit" name="submit">Periksa!</button>
             <!-- </span> -->
