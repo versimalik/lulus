@@ -96,6 +96,8 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 				{
 					if($data['skl']==0)
 					{
+						echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+
 						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
 					}
 					else
@@ -278,6 +280,8 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 				{
 					if($data['skl']==0)
 					{
+						echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+						
 						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
 					}
 					else
