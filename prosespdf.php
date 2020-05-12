@@ -630,9 +630,9 @@ $dompdf->setPaper('A4', 'potrait');
 
 $dompdf->render();
 
-// $dompdf->stream('SKL_'.$nisn.'.pdf');	
-$dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+$dompdf->stream('SKL_'.$nisn.'.pdf');	
+// $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
 
-exit(0);
+// exit(0);
 
  ?>
