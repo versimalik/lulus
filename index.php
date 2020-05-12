@@ -45,8 +45,10 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
     </nav>
     
     <div class="container">
-        <!-- <h2 align="center">Pengumuman Kelulusan <?=$hsl['tahun'] ?></h2> -->
-        <h3 align="center" style="font-weight: bold;">Pengumuman Kelulusan </h3>
+        <!-- <h2 align="center">Pengumuman Kelulusan 
+<?=$hsl['tahun'] ?></h2> -->
+        <h3 align="center" style="font-weight: bold;">Pengumuman Surat 
+Keterangan Lulus </h3>
         <h3 align="center" style="font-weight: bold;">SMP IT - SMA - SMK YP IPPI Petojo Tahun 2019/2020</h3>
 		<!-- countdown -->
 		
