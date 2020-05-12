@@ -181,7 +181,7 @@ include '_header.php';
   </div>
 
   <div class="form-group">
-    <label class="col-sm-3 control-label">Cetak SKL SMA</label>
+    <label class="col-sm-3 control-label">Cetak SKL SMK</label>
     <div class="col-sm-3">
       <select disabled  name="cfgsmknilai" class="form-control">
       <?php

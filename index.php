@@ -263,6 +263,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 ?>
 							<form method="post" action="prosespdf.php">
 								<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
+								<input type="hidden" name="nisn" value=<?php echo $data["nisn"]; ?>>
 								<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
 							</form>
 <?php
@@ -403,7 +404,6 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 <?php
 							if($data['komli']=="TKJ")
 							{
-								echo "TKJ";
 ?>
 						<tr>
 							<td>10</td>
@@ -479,6 +479,8 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 
 						<form method="post" action="prosespdf.php">
 							<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
+							<input type="hidden" name="nisn" value=<?php echo $data["nisn"]; ?>>
+
 							<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
 						</form>
 <?php

@@ -1,33 +1,66 @@
 <?php 
 include "database.php";
 $nopes = $_POST['nopes'];
+$nisn = $_POST['nisn'];
 
 require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
-$nolap = str_replace("-", "_", $nopes);
-$hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$nopes'");
+$hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$nopes' AND nisn='$nisn'");
 if(mysqli_num_rows($hasil) > 0)
 {
+
 	$data = mysqli_fetch_array($hasil);
 
+	$noujian = $data['no_ujian'];
+
+	if($data['instansi']=="smk")
+	{
+		$noujianface1 = substr_replace(str_replace("K","4-20-",$data['no_ujian']), "-", 7, 0);
+		$noujianface2 = substr_replace($noujianface1,"-",10,0);
+		$noujianface3 = substr_replace($noujianface2, "-", 15,0);
+		$noujian = substr_replace($noujianface3, "-", 20,0);
+	}
+	if($data['instansi']=="sma")
+	{
+		$noujianface1 = substr_replace(str_replace("K","",$data['no_ujian']), "-", 2, 0);
+		$noujianface2 = substr_replace($noujianface1,"-",5,0);
+		$noujianface3 = substr_replace($noujianface2, "-", 10,0);
+		$noujian = substr_replace($noujianface3, "-", 15,0);
+	}
+
 	$jur="";
+	$bid="";
+	$prog="";
+	$komp="";
 	if($data['komli']=="TKJ")
 	{
 		$jur="Teknik Komputer dan Jaringan";
+		$bid="Teknologi Informasi dan Komunikasi";
+		$prog="Teknik Komputer dan Informatika";
+		$komp="Teknik Komputer dan Jaringan";
 	}
 	elseif ($data['komli']=="AP")
 	{
 		$jur = "Otomatisasi dan Tata Kelola Perkantoran";
+		$bid="Bisnis dan Manajemen";
+		$prog="Manajemen Perkantoran";
+		$komp="Otomatisasi dan Tata Kelola Perkantoran";
 	}
 	elseif ($data['komli']=="AK")
 	{
 		$jur = "Akuntansi Keuangan dan Lembaga";
+		$bid="Bisnis dan Manajemen";
+		$prog="Akuntansi dan Keuangan";
+		$komp="Akuntansi dan Keuangan Lembaga";
 	}
 	elseif ($data['komli']=="PM")
 	{
 		$jur = "Bisnis Daring dan Pemasaran";
+		$bid="Bisnis dan Manajemen";
+		$prog="Bisnis dan Pemasaran";
+		$komp="Bisnis Daring dan Pemasaran";
 	}
 
 	$instansi="";
@@ -73,6 +106,11 @@ $html = '
 						margin:0px 0px 0px 100px;
 					}
 
+					.komli
+					{
+						margin:10px 0px 5px 180px;
+					}
+
 					.tablenilai
 					{
 						margin:5px 120px 0px 120px;
@@ -83,6 +121,18 @@ $html = '
 					{
 						border: 1px solid black;
 						padding: 3px;
+					}
+
+					.tablenilaismk
+					{
+						margin:5px 120px 0px 120px;
+						border-collapse: collapse;
+					}
+
+					.tablenilaismk td
+					{
+						border: 1px solid black;
+						padding: 1px;
 					}
 
 					.ttd
@@ -162,10 +212,38 @@ $html.=	'
 
 $html.='				
 							</td>
-						</tr>
-						<tr align="justify">
+						</tr>';
+
+if($data['instansi']=="smk")
+{
+	
+$html.='						<tr>
+							<td>
+								<div>
+									<table border="0" class="komli">
+										<tr>
+											<td>Bidang Keahlian</td>
+											<td>:</td>
+											<td>'.$bid.'</td>
+										</tr>
+										<tr>
+											<td>Program Keahlian</td>
+											<td>:</td>
+											<td>'.$prog.'</td>
+										</tr>
+										<tr>
+											<td>Kompetensi Keahlian</td>
+											<td>:</td>
+											<td>'.$komp.'</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>';
+}
+$html.='				<tr align="justify">
 							<td colspan="3">
-								<div style="margin:0px 40px 0px 40px;"><br/>Yang bertanda tangan di bawah ini Kepala ';
+								<div style="margin:0px 40px 0px 40px;">Yang bertanda tangan di bawah ini Kepala ';
 	if($data['instansi']=="smp")
 	{
 		$html.='Sekolah Menengah Pertama';
@@ -182,7 +260,6 @@ $html.='
 $html.='							
 									YP IPPI Petojo, menerangkan bahwa :
 								</div>
-								<br/>
 								<div>
 									<table border="0" class="lulus">
 										<tr>
@@ -193,7 +270,7 @@ $html.='
 										<tr>
 											<td>Nomor Ujian</td>
 											<td>:</td>
-											<td>'.$data['no_ujian'].'</td>
+											<td>'.$noujian.'</td>
 										</tr>										
 										<tr>
 											<td>Nama Siswa</td>
@@ -221,13 +298,21 @@ $html.='
 										</tr>
 									</table>
 								</div>
-								<div style="margin:25px 40px 0px 40px;">Telah dinyatakan LULUS dari Satuan Pendidikan '.$instansi.' YP IPPI Petojo Tahun Pelajaran 2019/2020 dengan nilai sebagai berikut :
+								<div style="margin:5px 40px 0px 40px;">Telah dinyatakan LULUS dari Satuan Pendidikan '.$instansi.' YP IPPI Petojo Tahun Pelajaran 2019/2020 dengan nilai sebagai berikut :
 								</div>
 							</td>
 						</tr>
 				</table>
-						<div class="fontnormal">
-							<table class="tablenilai" width="100%">';
+						<div class="fontnormal">';
+						if($data['instansi']=="smk")
+						{
+							$html.='<table class="tablenilaismk" width="100%">';
+						}
+						else
+						{
+							$html.='<table class="tablenilai" width="100%">';
+						}
+
 	if($data['instansi']=="sma")
 	{
 $html.='
@@ -490,7 +575,10 @@ $html.='
 							</table>
 						</div>';
 
-$html.='						
+$html.='
+						<div style="margin:0px 40px 0px 40px;" class="fontnormal" align="justify"><br/>
+							Surat keterangan ini berlaku sampai dengan diterbitkannya Ijazah yang sah. Jika dikemudian hari terdapat kesalahan dalam penulisan surat keterangan ini, akan diperbaiki sebagaimana mestinya.
+						</div>						
 						<div>
 							<table width="100%" border="0" class="ttd fontnormal">
 								<tr>
@@ -504,7 +592,7 @@ $html.='
 $html.='										
 										<div>Kepala SMA</div>
 										<!-- <div style="margin-top:30px;"><img src="img/ttdpakyusuf.jpeg" height="90"/></div>-->
-										<div style="margin-top:30px;">Yusup Abdul Azis, S.Pd.I</div>
+										<div style="margin-top:60px;">Yusup Abdul Azis, S.Pd.I</div>
 									</td>
 								</tr>
 							</table>
@@ -515,7 +603,7 @@ $html.='
 $html.='										
 										<div>Kepala SMK</div>
 										<!-- <div><img src="img/ttdpakmukidjo1.png" height="90"/></div>-->
-										<div style="margin-top:30px;">Drs. Mukidjo Martoyo, M.Pd</div>
+										<div style="margin-top:50px;">Drs. Mukidjo Martoyo, M.Pd</div>
 									</td>
 								</tr>
 							</table>
@@ -542,10 +630,9 @@ $dompdf->setPaper('A4', 'potrait');
 
 $dompdf->render();
 
-$dompdf->stream('SKL_'.$nolap.'.pdf');	
-// $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+// $dompdf->stream('SKL_'.$nisn.'.pdf');	
+$dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
 
-// exit(0);	
-			
+exit(0);
 
  ?>
