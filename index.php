@@ -86,7 +86,110 @@ Keterangan Lulus </h3>
 				}
 				else
 				{
-					echo $belum;
+?>
+					<table class="table table-bordered">
+							<tr>
+								<td>Nomor Ujian</td>
+								<td><?php echo $data['no_ujian']; ?></td>
+							</tr>
+							<tr>
+								<td>NISN</td>
+								<td><?php echo $data['nisn']; ?></td>
+							</tr>
+							<tr>
+								<td>Nama Siswa</td>
+								<td><?php echo strtoupper($data['nama']); ?></td>
+							</tr>
+						</table>
+						<table class="table table-bordered">
+							<tr>
+								<td class="text-center" width="5%">No</td>
+								<td class="text-center" width="85%">Mata Pelajaran</td>
+								<td class="text-center" width="10%">Nilai</td>
+							</tr>
+							<tr>
+								<td colspan="3" class="text-center">Kelompok A</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>Pendidikan Agama dan Budi Pekerti</td>
+								<td class="text-center"><?php echo $data['n_pai']; ?></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Pendidikan Kewarganegaraan</td>
+								<td class="text-center"><?php echo $data['n_pkn']; ?></td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Bahasa Indonesia</td>
+								<td class="text-center"><?php echo $data['n_bindo']; ?></td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Matematika</td>
+								<td class="text-center"><?php echo $data['n_mtk']; ?></td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>Ilmu Pengetahuan Alam</td>
+								<td class="text-center"><?php echo $data['n_ipa']; ?></td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>Ilmu Pengetahuan Sosial</td>
+								<td class="text-center"><?php echo $data['n_ips']; ?></td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>Bahasa Inggris</td>
+								<td class="text-center"><?php echo $data['n_bing']; ?></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="text-center">Kelompok B</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>Seni Budaya</td>
+								<td class="text-center"><?php echo $data['n_sen']; ?></td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
+								<td class="text-center"><?php echo $data['n_penj']; ?></td>
+							</tr>				
+							<tr>
+								<td>9</td>
+								<td>Prakarya
+								<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
+							</tr>
+						</table>
+						
+<?php
+						if( $data['status'] == 1 )
+						{
+							echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+						} else 
+
+						{
+							echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
+						}
+
+						if($sklsma==0)
+						{
+							echo '<div class="alert alert-danger" role="alert">Pencetakan SKL untuk '.strtoupper($data['instansi']).' belum tersedia. Mohon tunggu informasi selanjutnya!</div>';
+						}
+						else
+						{
+?>
+							<form method="post" action="prosespdf.php">
+								<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
+								<input type="hidden" name="nisn" value=<?php echo $data["nisn"]; ?>>
+								<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
+							</form>
+<?php
+						}?>
+<?php
 				}
 			}
 			elseif ($data['instansi']=="sma")
@@ -512,7 +615,7 @@ Keterangan Lulus </h3>
         <div class="input-group">
             <!-- <input type="text" name="nomor" class="form-control" data-mask="01-01-0058-9999-9" placeholder="Nomor Ujian" required> -->
             <input type="text" name="nisn" class="form-control" placeholder="NISN" required>
-            <input type="text" name="nomor" class="form-control" placeholder="Nomor Ujian : K0101XXXXXXXXX" required>
+            <input type="text" name="nomor" class="form-control" placeholder="No. Ujian : K0101XXXXXXXXX / 01-0517-XXXX-X" required>
             <!-- <span class="input-group-btn"> -->
                 <button class="btn btn-primary btn-block" type="submit" name="submit">Periksa!</button>
             <!-- </span> -->
