@@ -1,4 +1,5 @@
 <?php 
+// ini_set('display_errors', 1);
 include "database.php";
 $nopes = $_POST['nopes'];
 $nisn = $_POST['nisn'];
@@ -8,6 +9,8 @@ use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
 $hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$nopes' AND nisn='$nisn'");
+// var_dump("SELECT * FROM un_siswa WHERE no_ujian='$nopes' AND nisn='$nisn'");
+// die();
 if(mysqli_num_rows($hasil) > 0)
 {
 
@@ -22,13 +25,13 @@ if(mysqli_num_rows($hasil) > 0)
 		$noujianface3 = substr_replace($noujianface2, "-", 15,0);
 		$noujian = substr_replace($noujianface3, "-", 20,0);
 	}
-	if($data['instansi']=="sma")
-	{
-		$noujianface1 = substr_replace(str_replace("K","",$data['no_ujian']), "-", 2, 0);
-		$noujianface2 = substr_replace($noujianface1,"-",5,0);
-		$noujianface3 = substr_replace($noujianface2, "-", 10,0);
-		$noujian = substr_replace($noujianface3, "-", 15,0);
-	}	
+	// if($data['instansi']=="SMA")
+	// {
+	// 	// $noujianface1 = substr_replace(str_replace("K","",$data['no_ujian']), "-", 2, 0);
+	// 	// $noujianface2 = substr_replace($noujianface1,"-",5,0);
+	// 	// $noujianface3 = substr_replace($noujianface2, "-", 10,0);
+	// 	// $noujian = substr_replace($noujianface3, "-", 15,0);
+	// }	
 
 	$jur="";
 	$bid="";
@@ -164,7 +167,7 @@ $html = '
 								<span class="kopsedang">YAYASAN PERGURUAN</span><br/>
 
 								<span class="kopsedang">INSTITUT PENGEMBANGAN PENDIDIKAN INDONESIA</span><br/>';
-	if($data['instansi']=='sma')
+	if($data['instansi']=='SMA')
 	{
 		$html.= '<span class="kopsedang">SEKOLAH MENENGAH ATAS (SMA) YP IPPI PETOJO</span><br/>';
 	}
@@ -394,7 +397,7 @@ $html.='
 							$html.='<table class="tablenilai" width="100%">';
 						}
 
-	if($data['instansi']=="sma")
+	if($data['instansi']=="SMA")
 	{
 $html.='
 								<tr>
@@ -457,7 +460,7 @@ $html.='
 									<td colspan="3" class="text-center">Kelompok C (Peminatan)</td>
 								</tr>';
 			
-		if($data['komli']=="MIPA")
+		if($data['komli']=="IPA")
 		{
 								
 $html.='
@@ -767,7 +770,7 @@ diterbitkan dokumen Ijazah aslinya.
 
 	}
 
-	if($data['instansi']=='sma')
+	if($data['instansi']=='SMA')
 	{
 $html.='										
 										<div>Kepala SMA</div>
@@ -813,5 +816,4 @@ $dompdf->render();
 $dompdf->stream('SKL_'.$nisn.'.pdf');	
 // $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
 // exit(0);
-
  ?>

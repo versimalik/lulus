@@ -1,4 +1,5 @@
 <?php
+
 include "database.php";
 $que = mysqli_query($db_conn, "SELECT * FROM un_konfigurasi");
 $hsl = mysqli_fetch_array($que);
@@ -49,7 +50,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 <?=$hsl['tahun'] ?></h2> -->
         <h3 align="center" style="font-weight: bold;">Pengumuman Surat 
 Keterangan Lulus </h3>
-        <h3 align="center" style="font-weight: bold;">SMP IT - SMA - SMK YP IPPI Petojo Tahun 2019/2020</h3>
+        <h3 align="center" style="font-weight: bold;">SMP IT - SMA - SMK YP IPPI Jakarta Tahun 2020/2021</h3>
 		<!-- countdown -->
 		
 		<div id="clock" class="lead"></div>
@@ -67,7 +68,7 @@ Keterangan Lulus </h3>
 		{
 			$data = mysqli_fetch_array($hasil);
 
-
+			$cabang = $hsl['cabang'];
 			$carismp = $hsl['smpcari'];
 			$carisma = $hsl['smacari'];
 			$carismk = $hsl['smkcari'];
@@ -192,7 +193,7 @@ Keterangan Lulus </h3>
 <?php
 				}
 			}
-			elseif ($data['instansi']=="sma")
+			elseif ($data['instansi']=="SMA")
 			{
 				if($carisma==0)
 				{
@@ -219,6 +220,10 @@ Keterangan Lulus </h3>
 								<td><?php echo $data['nisn']; ?></td>
 							</tr>
 							<tr>
+								<td>Sekolah</td>
+								<td><?php echo "SMK YP IPPI ".$data['cabang']; ?></td>
+							</tr>
+							<tr>
 								<td>Nama Siswa</td>
 								<td><?php echo strtoupper($data['nama']); ?></td>
 							</tr>
@@ -234,7 +239,7 @@ Keterangan Lulus </h3>
 								<td class="text-center" width="10%">Nilai</td>
 							</tr>
 							<tr>
-								<td colspan="3" class="text-center">Kelompok A (Wajib)</td>
+								<td colspan="3" class="text-center">Kelompok A</td>
 							</tr>
 							<tr>
 								<td>1</td>
@@ -267,7 +272,7 @@ Keterangan Lulus </h3>
 								<td class="text-center"><?php echo $data['n_bing']; ?></td>
 							</tr>
 							<tr>
-								<td colspan="3" class="text-center">Kelompok B (Wajib)</td>
+								<td colspan="3" class="text-center">Kelompok B</td>
 							</tr>
 							<tr>
 								<td>7</td>
@@ -285,10 +290,10 @@ Keterangan Lulus </h3>
 								<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
 							</tr>
 							<tr>
-								<td colspan="3" class="text-center">Kelompok C (Peminatan)</td>
+								<td colspan="3" class="text-center">Kelompok C (Peminatan dan Lintas Minat)</td>
 							</tr>
 <?php
-								if($data['komli']=="MIPA")
+								if($data['komli']=="IPA")
 								{
 ?>
 							<tr>
@@ -341,11 +346,8 @@ Keterangan Lulus </h3>
 								}
 ?>
 							<tr>
-								<td colspan="3" class="text-center">Kelompok D (Pendalaman Minat)</td>
-							</tr>
-							<tr>
 								<td>14</td>
-								<td>Bahasa Arab</td>
+								<td>Pilihan Lintas Minat / Pendalaman Minat : Bahasa Arab</td>
 								<td class="text-center"><?php echo $data['n_barab']; ?></td>
 							</tr>
 						</table>
@@ -370,7 +372,7 @@ Keterangan Lulus </h3>
 							<form method="post" action="prosespdf.php">
 								<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
 								<input type="hidden" name="nisn" value=<?php echo $data["nisn"]; ?>>
-								<input type="submit" name="submit" value="Klik Untuk Download SKL" class="btn btn-primary btn-sm">
+								<input type="submit" name="submit" value="Klik Untuk Melihat SKL" class="btn btn-primary btn-sm">
 							</form>
 <?php
 						}
