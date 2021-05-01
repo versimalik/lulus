@@ -9,78 +9,19 @@ use Dompdf\Dompdf;
 $dompdf = new Dompdf();
 
 $hasil = mysqli_query($db_conn,"SELECT * FROM un_siswa WHERE no_ujian='$nopes' AND nisn='$nisn'");
-// var_dump("SELECT * FROM un_siswa WHERE no_ujian='$nopes' AND nisn='$nisn'");
-// die();
+$konfigurasi = mysqli_query($db_conn,"SELECT * FROM un_konfigurasi");
+
 if(mysqli_num_rows($hasil) > 0)
 {
 
 	$data = mysqli_fetch_array($hasil);
+	$konfig = mysqli_fetch_array($konfigurasi);
 
 	$noujian = $data['no_ujian'];
-
-	if($data['instansi']=="smk")
-	{
-		$noujianface1 = substr_replace(str_replace("K","4-20-",$data['no_ujian']), "-", 7, 0);
-		$noujianface2 = substr_replace($noujianface1,"-",10,0);
-		$noujianface3 = substr_replace($noujianface2, "-", 15,0);
-		$noujian = substr_replace($noujianface3, "-", 20,0);
-	}
-	// if($data['instansi']=="SMA")
-	// {
-	// 	// $noujianface1 = substr_replace(str_replace("K","",$data['no_ujian']), "-", 2, 0);
-	// 	// $noujianface2 = substr_replace($noujianface1,"-",5,0);
-	// 	// $noujianface3 = substr_replace($noujianface2, "-", 10,0);
-	// 	// $noujian = substr_replace($noujianface3, "-", 15,0);
-	// }	
-
-	$jur="";
-	$bid="";
-	$prog="";
-	$komp="";
-	if($data['komli']=="TKJ")
-	{
-		$jur="Teknik Komputer dan Jaringan";
-		$bid="Teknologi Informasi dan Komunikasi";
-		$prog="Teknik Komputer dan Informatika";
-		$komp="Teknik Komputer dan Jaringan";
-	}
-	elseif ($data['komli']=="AP")
-	{
-		$jur = "Otomatisasi dan Tata Kelola Perkantoran";
-		$bid="Bisnis dan Manajemen";
-		$prog="Manajemen Perkantoran";
-		$komp="Otomatisasi dan Tata Kelola Perkantoran";
-	}
-	elseif ($data['komli']=="AK")
-	{
-		$jur = "Akuntansi Keuangan dan Lembaga";
-		$bid="Bisnis dan Manajemen";
-		$prog="Akuntansi dan Keuangan";
-		$komp="Akuntansi dan Keuangan Lembaga";
-	}
-	elseif ($data['komli']=="PM")
-	{
-		$jur = "Bisnis Daring dan Pemasaran";
-		$bid="Bisnis dan Manajemen";
-		$prog="Bisnis dan Pemasaran";
-		$komp="Bisnis Daring dan Pemasaran";
-	}
-
-	$instansi="";
-	if($data['instansi']=="smp")
-	{
-		$ttlex = explode(',', $data['ttl']);
-	$ttl = $ttlex[0].", ".$ttlex[1];
-		$instansi = "SMP";
-	}
-	elseif($data['instansi']=="sma")
-	{
-		$instansi = "SMA";
-	}
-	elseif($data['instansi']=="smk")
-	{
-		$instansi = "SMK";
-	}
+	$cabang= ($data['cabang']=="PETOJO") ? "Petojo" : "Cakung";
+	$jakarta= ($data['cabang']=="PETOJO") ? "Jakarta Pusat" : "Jakarta Timur";
+	$alamatippi = ($data['cabang']=="PETOJO") ? "Jl. Petojo Barat III No.2  Jakarta Pusat Telp. 6318984, 6313055 - Fax. 6313055" : "Jl. P. Komarudin Ujung Krawang Kober Limo, Pulogebang, Cakung - Jakarta Timur";
+	$emailsma = ($data['cabang']=="CAKUNG")?"smas.ypippickg@gmail.com":"smaypippi_1951@yahoo.com";
 
 $html = '
 		<html>
@@ -91,24 +32,30 @@ $html = '
 
 					.kopbesar
 					{
-						font-size : 20px;
+						font-size : 16px;
 					}
 
 					.kopsedang
 					{
-						font-size: 17px;
+						font-size: 15px;
 						white-space:nowrap;
 					}
 
 					.kopkecil
 					{
-						font-size: 11px;
+						font-size: 14px;
 						white-space:nowrap;
 					}
 
 					.lulus
 					{
 						margin:0px 0px 0px 100px;
+					}
+
+					.lulus td
+					{
+						padding-top:0px;
+						padding-bottom:0px;
 					}
 
 					.komli
@@ -118,14 +65,15 @@ $html = '
 
 					.tablenilai
 					{
-						margin:5px 120px 0px 120px;
+						margin:5px 50px 0px 50px;
 						border-collapse: collapse;
+						font-size:13px;
 					}
 
 					.tablenilai td
 					{
 						border: 1px solid black;
-						padding: 3px;
+						padding: 1 2 1 2px;
 					}
 
 					.tablenilaismk
@@ -154,49 +102,30 @@ $html = '
 
 					.fontnormal
 					{
-						font-size: 13px;
+						font-size: 12px;
 					}
 				</style>
 			</head>
 			<body>
-				<table border="0" width="100%" style="margin:0px 50px 0px 50px;">
+				<table border="0" width="100%" style="margin:0px 5 0px 0px 10px;">
 						<tr>
-							<td text-align:"center"><img src="img/logoippi.png" style="width:130px;"/>
+							<td><img src="img/logoippi.png" style="width:130px; margin-left:35px;"/>
 							</td>
 							<td align="center">
 								<span class="kopsedang">YAYASAN PERGURUAN</span><br/>
 
 								<span class="kopsedang">INSTITUT PENGEMBANGAN PENDIDIKAN INDONESIA</span><br/>';
-	if($data['instansi']=='SMA')
-	{
-		$html.= '<span class="kopsedang">SEKOLAH MENENGAH ATAS (SMA) YP IPPI PETOJO</span><br/>';
-	}
-	elseif ($data['instansi']=='smk')
-	{
-		$html.= '<span class="kopsedang">SEKOLAH MENENGAH KEJURUAN (SMK) YP IPPI PETOJO</span><br/>';
-	}
-	elseif ($data['instansi']=='smp')
-	{
-		$html.= '<span class="kopsedang">SEKOLAH MENENGAH PERTAMA (SMP) YP IPPI PETOJO</span><br/>';
-	}
-
+		$it=($data['cabang']=="CAKUNG")?"SEKOLAH MENENGAH ATAS ISLAM TERPADU (SMA IT) YP IPPI ":"SEKOLAH MENENGAH ATAS (SMA) YP IPPI ";
+		$html.= '<span class="kopsedang">'.$it.strtoupper($cabang).'</span><br/>';
 $html.=	'
 
-							<span class="kopsedang">JAKARTA PUSAT</span><br/>
+							<span class="kopsedang">'.strtoupper($jakarta).'</span><br/>
 
 								<span class="kopbesar">AKREDITASI : "A"</span><br/>
 
-								<span class="kopkecil">Jl. Petojo Barat III No.2  Jakarta Pusat Telp. 6318984, 6313055 - Fax. 6313055</span><br/>';
-		if($data['instansi']=='smp')
-		{
-			$html.='
-					<span class="kopkecil">Email : ypippi.petojo1951@gmail.com</span>';
-		}
-		else
-		{
-			$html.='
-					<span class="kopkecil">Email : smaypippi_1951@yahoo.com</span>';
-		}
+								<span class="kopkecil">'.$alamatippi.'</span><br/>';
+		
+			$html.='<span class="kopkecil">Telp. (021) 48703207 Fax. (021)4808359 Email : '.$emailsma.'</span>';
 								
 								$html.='
 							</td>
@@ -211,202 +140,81 @@ $html.=	'
 						</tr>
 						<tr align="center">
 							<td colspan="3" style="line-height: 1;">
-								<span>SURAT KETERANGAN LULUS</span>';
-	if($data['instansi']=='smp')
-	{
-		$html.='<br/><span>TAHUN PELAJARAN 2019/2020</span>';
-	}
+								<span>SURAT KETERANGAN LULUS</span>
+								<br>';
+			$judulskl = ($data['instansi']=="SMA" ? ($data['komli']=="IPA" ? "PEMINATAN MATEMATIKA DAN ILMU PENGETAHUAN ALAM (MIPA)" : "PEMINATAN ILMU PENGETAHUAN SOSIAL (IPS)") : "LAIN");
 
-	$html.='
-								<span><hr style="width:35%;"></span>';
-	if($data['instansi']=="smp")
-	{
-		$html.='<span>Nomor :  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/SK-PP/VI/2020</span><br/>';
-	}
-	elseif($data['instansi']=="sma")
-	{
-		$html.='<span>Nomor : 083 / SK-AP / V / 2020</span>';
-	}
-	elseif($data['instansi']=="smk")
-	{
-		$html.='<span>Nomor : 135 / SK / E / V / 2020</span>';
-	}
+			$html.=$judulskl;
+			$html.='<br/><span>TAHUN PELAJARAN 2020/2021</span>';
+			$html.='<br>Nomor:';
 
 $html.='				
 							</td>
 						</tr>';
-
-if($data['instansi']=="smk")
-{
-	
-$html.='						<tr>
-							<td>
-								<div>
-									<table border="0" class="komli">
-										<tr>
-											<td>Bidang Keahlian</td>
-											<td>:</td>
-											<td>'.$bid.'</td>
-										</tr>
-										<tr>
-											<td>Program Keahlian</td>
-											<td>:</td>
-											<td>'.$prog.'</td>
-										</tr>
-										<tr>
-											<td>Kompetensi Keahlian</td>
-											<td>:</td>
-											<td>'.$komp.'</td>
-										</tr>
-									</table>
-								</div>
-							</td>
-						</tr>';
-}
+$skolah = ($data['cabang']=="CAKUNG")?"Islam Terpadu YP IPPI Cakung":"YP IPPI Petojo";
 $html.='				<tr align="justify">
 							<td colspan="3">
 								<div style="margin:0px 40px 0px 40px;">';
-	if($data['instansi']=="smp")
-	{
-		$html.='Kepala SMP YP IPPI Petojo menerangkan dengan sesungguhnya bahwa :<br/>';
-	}
-	elseif($data['instansi']=="sma")
-	{
-		$html.='Yang bertanda tangan di bawah ini Kepala Sekolah Menengah Atas YP IPPI Petojo, menerangkan bahwa :';
-	}
-	elseif($data['instansi']=="smk")
-	{
-		$html.='Yang bertanda tangan di bawah ini Kepala Sekolah Menengah Kejuruan YP IPPI Petojo, menerangkan bahwa :';
-	}						
+		$html.='Yang bertanda tangan di bawah ini Kepala Sekolah Menengah Atas '.$skolah.', menerangkan dengan sesungguhnya bahwa :';					
 
 $html.='							
 									
 								</div>';
-
-	if($data['instansi']=='smp')
-	{
-		$html.=
-
-		'<div>
+		$html.='
+								<div>
 									<table border="0" class="lulus">
 										<tr>
 											<td>Nama</td>
 											<td>:</td>
-											<td>'.strtoupper($data['nama']).'</td>
+											<td>'.$data['nama'].'</td>
 										</tr>
 										<tr>
-											<td>Tempat dan Tanggal Lahir</td>
+											<td>Tempat, Tanggal Lahir</td>
 											<td>:</td>
-											<td>'.$ttl.'</td>
+											<td>'.$data['ttl'].'</td>
+										</tr>										
+										<tr>
+											<td>Nomor Peserta Ujian</td>
+											<td>:</td>
+											<td>'.$data['no_ujian'].'</td>
 										</tr>
 										<tr>
-											<td>NIS</td>
+											<td>Nomor Induk Siswa</td>
 											<td>:</td>
 											<td>'.$data['nis'].'</td>
 										</tr>
-										<tr>
-											<td>NISN</td>
-											<td>:</td>
-											<td>'.$data['nisn'].'</td>
-										</tr>
-										<tr>
-											<td>Kelas</td>
-											<td>:</td>
-											<td>'.$data['kelas'].'</td>
-										</tr>
-										<tr>
-											<td>Nomor Peserta Ujian Sekolah</td>
-											<td>:</td>
-											<td>'.$noujian.'</td>
-										</tr>';
-	}
-	else
-	{
-		$html.='
-								<div>
-									<table border="0" class="lulus">
 										<tr>
 											<td>Nomor Induk Siswa Nasional</td>
 											<td>:</td>
 											<td>'.$data['nisn'].'</td>
 										</tr>
 										<tr>
-											<td>Nomor Ujian</td>
+											<td>NPSN</td>
 											<td>:</td>
-											<td>'.$noujian.'</td>
-										</tr>										
-										<tr>
-											<td>Nama Siswa</td>
-											<td>:</td>
-											<td>'.strtoupper($data['nama']).'</td>
+											<td>20100215</td>
 										</tr>';
-		if($data['komli']=='MIPA'||$data['komli']=='IPS')
-		{
-			$html.='
-											<tr>
-												<td>Jurusan</td>
-												<td>:</td>
-												<td>'.$data['komli'].'</td>';
-		}
-		elseif($data['komli']=='TKJ'||$data['komli']=='AP'||$data['komli']=='AK'||$data['komli']=='PM')
-		{
-			$html.='
-											<tr>
-												<td>Kompetensi Keahlian</td>
-												<td>:</td>
-												<td>'.$jur.'</td>';
-		}
-	}
-
-	if($data['instansi']!='smp')
-	{
-		$html.='
-										</tr>
+	$skolah2=($data['cabang']=="CAKUNG"?"SMA IT YP IPPI Cakung":"SMA YP IPPI Petojo");
+ 
+	$html.='						</tr>
 									</table>
 								</div>
-								<div style="margin:5px 40px 0px 40px;">Telah dinyatakan LULUS dari Satuan Pendidikan '.$instansi.' YP IPPI Petojo Tahun Pelajaran 2019/2020 dengan nilai sebagai berikut :
+								<div style="margin:5px 40px 0px 40px; text-align=justify">Berdasarkan kriteria kelulusan peserta didik yang sudah ditetapkan pada Satuan Pendidikan '.$skolah2.' yang sesuai dengan peraturan perundang-undangan dan Hasil Rapat Pleno Dewan Pendidik tentang Kelulusan Peserta Didik '.$skolah2.', maka yang bersangkutan dinyatakan:
 								</div>
-							</td>
-						</tr>
-				</table>';
-	}
-	else
-	{
-		$html.='						</tr>
-									</table>
-								</div>
-								<div style="margin:5px 40px 0px 40px; text-align=justify">adalah peserta Ujian Sekolah (US) SMP YP IPPI Petojo Tahun Pelajaran 2019/2020 dan berdasarkan ketuntasan dari seluruh program pembelajaran pada Kurikulum 2013, kriteria kelulusan peserta didik pada Satuan Pendidikan SMP YP IPPI Petojo yang sesuai dengan peraturan perundang-undangan dan Hasil Rapat Pleno Dewan Pendidik tentang Kelulusan Peserta Didik SMP YP IPPI Petojo. Pada Tanggal 5 Juni 2020 peserta didik tersebut diatas dinyatakan :
-								</div>
-								<div style="display:block; margin:5px 40px 0px 320px; font-weight:bolder">LULUS</div>
+								<div style="display:block; margin:1px 40px 0px 320px; font-weight:bolder; font-size:15;">LULUS</div>
 								<div style="display:block; margin:5px 40px 0px 40px;">dengan hasil nilai sebagai berikut  :</div>
 							</td>
 						</tr>
 				</table>';
-	}
 
-	if($data['instansi']!='smp')
-	{
-$html.='
-						<div class="fontnormal">';
-						if($data['instansi']=="smk")
-						{
-							$html.='<table class="tablenilaismk" width="100%">';
-						}
-						else
-						{
-							$html.='<table class="tablenilai" width="100%">';
-						}
-
-	if($data['instansi']=="SMA")
-	{
+					$html.='<table class="tablenilai" width="100%">';
 $html.='
 								<tr>
 									<td class="text-center" width="10%">No</td>
-									<td class="text-center" width="60%">Mata Pelajaran</td>
-									<td class="text-center" width="20%">Nilai</td>
+									<td class="text-center" width="60%">Mata Pelajaran<br>(Kurikulum 2013)</td>
+									<td class="text-center" width="20%">Nilai Ujian Sekolah</td>
 								</tr>
 								<tr>
-									<td colspan="3" class="text-center">Kelompok A (Wajib)</td>
+									<td colspan="3">Kelompok A</td>
 								</tr>
 								<tr>
 									<td class="text-center">1</td>
@@ -439,7 +247,7 @@ $html.='
 									<td class="text-center">'.$data['n_bing'].'</td>
 								</tr>
 								<tr>
-									<td colspan="3" class="text-center">Kelompok B (Wajib)</td>
+									<td colspan="3">Kelompok B</td>
 								</tr>
 								<tr>
 									<td class="text-center">7</td>
@@ -457,7 +265,7 @@ $html.='
 									<td class="text-center">'.$data['n_pkwu'].'</td>
 								</tr>
 								<tr>
-									<td colspan="3" class="text-center">Kelompok C (Peminatan)</td>
+									<td colspan="3">Kelompok C (Peminatan dan Lintas Minat)</td>
 								</tr>';
 			
 		if($data['komli']=="IPA")
@@ -511,298 +319,51 @@ $html.='
 								</tr>';
 									
 		}
-							
+$minat = ($data['cabang']=="PETOJO")?"Bahasa Arab":"Bahasa Jepang";
+$nilaiminat = ($data['cabang']=="PETOJO")?$data['n_barab']:$data['n_jpg'];			
 $html.='						<tr>
-									<td colspan="3" class="text-center">Kelompok D (Pendalaman Minat)</td>
-								</tr>
-								<tr>
 									<td class="text-center">14</td>
-									<td>Bahasa Arab</td>
-									<td class="text-center">'.$data['n_barab'].'</td>
-								</tr>';
-	}
-	elseif($data['instansi']=="smk")
-	{
-$html.='						
-								<tr>
-									<td class="text-center" rowspan="2" style="vertical-align: middle;">No</td>
-									<td class="text-center" rowspan="2" style="vertical-align: middle;">Mata Pelajaran</td>
-									<td class="text-center" colspan="2">Nilai</td>
-								</tr>
-								<tr>
-									<td class="text-center">Rata-Rata Raport</td>
-									<td class="text-center">Ujian Sekolah</td>
-								</tr>
-								<tr>
-									<td colspan="4">A. Muatan Nasional</td>
-								</tr>
-								<tr>
-									<td class="text-center">1</td>
-									<td>Pendidikan Agama dan Budi Pekerti</td>
-									<td class="text-center">'.$data['r_pai'].'</td>
-									<td class="text-center">'.$data['n_pai'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">2</td>
-									<td>Pendidikan Kewarganegaraan</td>
-									<td class="text-center">'.$data['r_pkn'].'</td>
-									<td class="text-center">'.$data['n_pkn'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">3</td>
-									<td>Bahasa Indonesia</td>
-									<td class="text-center">'.$data['r_bindo'].'</td>
-									<td class="text-center">'.$data['n_bindo'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">4</td>
-									<td>Matematika</td>
-									<td class="text-center">'.$data['r_mtk'].'</td>
-									<td class="text-center">'.$data['n_mtk'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">5</td>
-									<td>Sejarah Indonesia</td>
-									<td class="text-center">'.$data['r_sejin'].'</td>
-									<td class="text-center">'.$data['n_sejin'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">6</td>
-									<td>Bahasa Inggris</td>
-									<td class="text-center">'.$data['r_bing'].'</td>
-									<td class="text-center">'.$data['n_bing'].'</td>
-								</tr>
-								<tr>
-									<td colspan="4">B. Muatan Kewilayahan</td>
-								</tr>
-								<tr>
-									<td class="text-center">7</td>
-									<td>Seni Budaya</td>
-									<td class="text-center">'.$data['r_sen'].'</td>
-									<td class="text-center">'.$data['n_sen'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">8</td>
-									<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
-									<td class="text-center">'.$data['r_penj'].'</td>
-									<td class="text-center">'.$data['n_penj'].'</td>
-								</tr>
-								<tr>
-									<td colspan="4">C. Muatan Peminatan Kejuruan</td>
-								</tr>
-								<tr>
-									<td colspan="4">C1. Bidang Keahlian</td>
-								</tr>
-								<tr>
-									<td class="text-center">9</td>
-									<td>Simulasi Digital</td>
-									<td class="text-center">'.$data['r_simdig'].'</td>
-									<td class="text-center">'.$data['n_simdig'].'</td>
-								</tr>';
-
-			if($data['komli']=="TKJ")
-			{
-
-$html.='
-								<tr>
-									<td class="text-center">10</td>
-									<td>Fisika</td>
-									<td class="text-center">'.$data['r_fis'].'</td>
-									<td class="text-center">'.$data['n_fis'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">11</td>
-									<td>Kimia</td>
-									<td class="text-center">'.$data['r_kim'].'</td>
-									<td class="text-center">'.$data['n_kim'].'</td>
-								</tr>';
-			}
-			else
-			{
-$html.='
-								<tr>
-									<td class="text-center">10</td>
-									<td>Ekonomi Bisnis</td>
-									<td class="text-center">'.$data['r_ekob'].'</td>
-									<td class="text-center">'.$data['n_ekob'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">11</td>
-									<td>Administrasi Umum</td>
-									<td class="text-center">'.$data['r_admu'].'</td>
-									<td class="text-center">'.$data['n_admu'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">12</td>
-									<td>IPA</td>
-									<td class="text-center">'.$data['r_ipa'].'</td>
-									<td class="text-center">'.$data['n_ipa'].'</td>
-								</tr>';
-			}
-								
-$html.='
-								<tr>
-									<td colspan="2">C2. Dasar Program Keahlian</td>
-									<td class="text-center">'.$data['r_c2'].'</td>
-									<td class="text-center">'.$data['n_c2'].'</td>
-								</tr>
-								<tr>
-									<td colspan="2">C3. Kompetensi Keahlian</td>
-									<td class="text-center">'.$data['r_c3'].'</td>
-									<td class="text-center">'.$data['n_c3'].'</td>
+									<td>Pilihan Lintas Minat/Pendalaman Minat: '.$minat.'</td>
+									<td class="text-center">'.$nilaiminat.'</td>
 								</tr>
 
-
-		';
-	}
+								<tr>
+									<td colspan = "2" class="text-center">Rata - Rata</td>
+									<td class="text-center">'.$data['rata'].'</td>
+								</tr>';
 $html.='
 							</table>
 						</div>';
-	}
-	else
-	{
-		$html.='
-						<div class="fontnormal">
-							<table class="tablenilai" width="100%">
-								<tr>
-									<td class="text-center" width="10%">No</td>
-									<td class="text-center" width="60%">Mata Pelajaran</td>
-									<td class="text-center" width="20%">Nilai</td>
-								</tr>
-								<tr>
-									<td colspan="3" class="text-center">Kelompok A</td>
-								</tr>
-								<tr>
-									<td class="text-center">1</td>
-									<td>Pendidikan Agama dan Budi Pekerti</td>
-									<td class="text-center">'.$data['n_pai'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">2</td>
-									<td>Pendidikan Pancasila dan Kewarganegaraan</td>
-									<td class="text-center">'.$data['n_pkn'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">3</td>
-									<td>Bahasa Indonesia</td>
-									<td class="text-center">'.$data['n_bindo'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">4</td>
-									<td>matematika</td>
-									<td class="text-center">'.$data['n_mtk'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">5</td>
-									<td>Ilmu Pengetahuan Alam</td>
-									<td class="text-center">'.$data['n_ipa'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">6</td>
-									<td>Ilmu Pengetahuan Sosial</td>
-									<td class="text-center">'.$data['n_ips'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">7</td>
-									<td>Bahasa Inggris</td>
-									<td class="text-center">'.$data['n_bing'].'</td>
-								</tr>
-								<tr>
-									<td colspan="3" class="text-center">Kelompok B</td>
-								</tr>
-								<tr>
-									<td class="text-center">8</td>
-									<td>Seni Budaya</td>
-									<td class="text-center">'.$data['n_sen'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">9</td>
-									<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
-									<td class="text-center">'.$data['n_penj'].'</td>
-								</tr>
-								<tr>
-									<td class="text-center">10</td>
-									<td>Prakarya</td>
-									<td class="text-center">'.$data['n_pkwu'].'</td>
-								</tr>
-								<tr>
-									<td colspan=2 align=center  style="font-weight:bolder;"> JUMLAH</td>
-									<td class="text-center" style="font-weight:bolder;">'.$data['jml'].'</td>
-								</tr>
-								<tr>
-									<td colspan=2 align=center  style="font-weight:bolder;"> RATA-RATA</td>
-									<td class="text-center" style="font-weight:bolder;">'.$data['rata'].'</td>
-								</tr>
-							</table>
-						</div>
-								';
-	}
-
-	if($data['instansi']!='smp')
-	{
+	
+		$sklsalin=($data['cabang']=="PETOJO")?'<div style="background-color:#3c763d; color:white; padding:10px;">Ini adalah tampilan salinan SKL. SKL asli akan dibagikan pada saat pembagian rapor.</div>':"";
 		$html.='
 						<div style="margin:0px 40px 0px 40px;" class="fontnormal" align="justify"><br/>
-							Surat keterangan ini berlaku sampai dengan diterbitkannya Ijazah yang sah. Jika dikemudian hari terdapat kesalahan dalam penulisan surat keterangan ini, akan diperbaiki sebagaimana mestinya.
+							Surat keterangan ini bersifat sementara sampai dikeluarkannya ijazah.
+							<br><br>
+							Demikian surat keterangan ini diberikan agar dapat digunakan sebagaimana mestinya, apabila di kemudian hari terdapat kekeliruan, maka akan dilakukan perbaikan atau Surat Keterangan ini tidak berlaku.
 						</div>						
 						<div>
-							<table width="100%" border="0" class="ttd fontnormal">
-								<tr>
-									<td width="33%"></td>
-									<td width="29%"></td>
-									<td width="38%">
-										<div>Jakarta, 2 Mei 2020</div>
-										<br/>';
-	}
-	else
-	{
-		$html.='
-						<div style="margin:0px 40px 0px 40px;" class="fontnormal" align="justify"><br/>
-							Surat keterangan ini bersifat sementara dan dapat digunakan sebagai pengganti Ijazah sampai
-diterbitkan dokumen Ijazah aslinya.
-						</div>						
-						<div>
-							<table width="100%" border="0" class="ttd fontnormal">
+							<table width="100%" border="-" class="ttd fontnormal">
 								<tr>
 									<td width="40%"></td>
-									<td width="24%" align=center>Pas Foto<br/>3 x 4 cm</td>
+									<td width="54%">'.$sklsalin.'</td>
 									<td width="38%" style="padding-left:30px;">
-									<div>Jakarta, 5 Juni 2020</div>';
+									<div>Jakarta, 3 Mei 2021</div>';
 
-	}
+	
 
-	if($data['instansi']=='SMA')
-	{
+$kepseksma=($data['cabang']=="CAKUNG")?"Asmiliyah, S.Pd":"Yusup Abdul Azis, S.Pd.I";
+$nipkepseksma=($data['cabang']=="CAKUNG")?"NIP.-":"NUPTK. 7052764665200010";
+$kepalasma = ($data['cabang']=="CAKUNG")?" IT":"";
 $html.='										
-										<div>Kepala SMA</div>
+										<div>Kepala SMA'.$kepalasma.'</div>
 										<!-- <div style="margin-top:30px;"><img src="img/ttdpakyusuf.jpeg" height="90"/></div>-->
-										<div style="margin-top:60px;">Yusup Abdul Azis, S.Pd.I</div>
+										<div style="margin-top:50px;">'.$kepseksma.'</div>
+										<div>'.$nipkepseksma.'</div>
 									</td>
 								</tr>
 							</table>
 						</div>';
-	}
-	elseif($data['instansi']=='smk')
-	{
-$html.='										
-										<div>Kepala SMK</div>
-										<!-- <div><img src="img/ttdpakmukidjo1.png" height="90"/></div>-->
-										<div style="margin-top:50px;">Drs. Mukidjo Martoyo, M.Pd</div>
-									</td>
-								</tr>
-							</table>
-						</div>';
-	}
-	elseif($data['instansi']=='smp')
-	{
-$html.='										
-										<br/><div>Kepala SMP</div>
-										<!-- <div><img src="img/ttdpaksutarno.png" height="90"/></div>-->
-										<div style="margin-top:50px;">Hadi Sutarno, S.Kom</div>
-									</td>
-								</tr>
-							</table>
-						</div>';
-	}
 }
 // var_dump($html);
 // die();
@@ -813,7 +374,10 @@ $dompdf->setPaper('A4', 'potrait');
 
 $dompdf->render();
 
-$dompdf->stream('SKL_'.$nisn.'.pdf');	
-// $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+// $dompdf->stream('SKL_'.$nisn.'.pdf');	
+$dompdf->stream("skl2021-".$data['nisn'].".pdf", array("Attachment" => 0));
 // exit(0);
+
+
+
  ?>

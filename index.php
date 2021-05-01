@@ -50,7 +50,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 <?=$hsl['tahun'] ?></h2> -->
         <h3 align="center" style="font-weight: bold;">Pengumuman Surat 
 Keterangan Lulus </h3>
-        <h3 align="center" style="font-weight: bold;">SMP IT - SMA - SMK YP IPPI Jakarta Tahun 2020/2021</h3>
+        <h3 align="center" style="font-weight: bold;">YP IPPI Jakarta Tahun 2020/2021</h3>
 		<!-- countdown -->
 		
 		<div id="clock" class="lead"></div>
@@ -203,7 +203,7 @@ Keterangan Lulus </h3>
 				{
 					if($data['skl']==0)
 					{
-						echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+						// echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
 
 						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
 					}
@@ -221,7 +221,7 @@ Keterangan Lulus </h3>
 							</tr>
 							<tr>
 								<td>Sekolah</td>
-								<td><?php echo "SMK YP IPPI ".$data['cabang']; ?></td>
+								<td><?php echo ($data['cabang']=="CAKUNG")?"SMK IT YP IPPI Cakung":"SMK YP IPPI Petojo"; ?></td>
 							</tr>
 							<tr>
 								<td>Nama Siswa</td>
@@ -344,11 +344,12 @@ Keterangan Lulus </h3>
 <?php
 								
 								}
+							$minat = ($data['cabang']=="PETOJO")?"Bahasa Arab":"Bahasa Jepang";
 ?>
 							<tr>
 								<td>14</td>
-								<td>Pilihan Lintas Minat / Pendalaman Minat : Bahasa Arab</td>
-								<td class="text-center"><?php echo $data['n_barab']; ?></td>
+								<td>Pilihan Lintas Minat / Pendalaman Minat : <?php echo $minat;?></td>
+								<td class="text-center"><?php echo ($data['cabang']=="CAKUNG")?$data['n_jpg']:$data['n_barab'] ?></td>
 							</tr>
 						</table>
 						
@@ -631,7 +632,7 @@ Keterangan Lulus </h3>
 	
 	<footer class="footer">
 		<div class="container">
-			<p class="text-muted">&copy; <?=$hsl['tahun'] ?> &middot; Tim IT <?=$hsl['sekolah'] ?></p>
+			<p class="text-muted">&copy; <?=$hsl['tahun'] ?> &middot; Tim IT <?=$hsl['sekolah']; ?></p>
 		</div>
 	</footer>
     
