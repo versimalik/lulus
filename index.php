@@ -229,7 +229,7 @@ Keterangan Lulus </h3>
 							</tr>
 							<tr>
 								<td>Jurusan</td>
-								<td><?php echo $data['komli']; ?></td>
+								<td><?php echo ($data['komli']=="IPA")?"MIPA":"IPS"; ?></td>
 							</tr>
 						</table>
 						<table class="table table-bordered">
