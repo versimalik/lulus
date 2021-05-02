@@ -106,8 +106,36 @@ $html = '
 					}
 				</style>
 			</head>
-			<body>
-				<table border="0" width="100%" style="margin:0px 5 0px 0px 10px;">
+			<body>';
+
+		if ($data['cabang']=="CAKUNG") {
+			$html.='	<table border="0" width="100%" style="margin:0px 5 0px 0px 10px;">
+						<tr>
+							<td><img src="img/logoippi.png" style="width:130px; margin-left:65px;"/>
+							</td>
+							<td align="center" style="padding-right:35px;">
+								<span class="kopsedang">YAYASAN PERGURUAN</span><br/>	
+								<span class="kopsedang">INSTITUT PENGEMBANGAN PENDIDIKAN INDONESIA</span><br/>
+									<span class="kopsedang" style="font-size:18px; font-weight:bolder;">SEKOLAH MENENGAH ATAS (SMA)</span><br/>
+									<span class="kopsedang" style="font-size:18px; font-weight:bolder;">YP IPPI CAKUNG JAKARTA TIMUR</span><br/>
+									<span class="kopsedang" style="font-size:18px; font-weight:bolder;">TERAKREDITASI "A"</span><br/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="border-top:1px solid black; border-bottom:4px double black; font-size:12px; text-align:center">
+								Jl. Ujung Krawang/ Jl. Kober Ujung RT. 006 RW. 05, Kelurahan Pulo Gebang Kecamatan Cakung Kota Administrasi Jakarta Timur
+							</td>
+						</tr>
+						</table>
+
+
+
+							';
+
+		}
+		else
+		{
+			$html.='	<table border="0" width="100%" style="margin:0px 5 0px 0px 10px;">
 						<tr>
 							<td><img src="img/logoippi.png" style="width:130px; margin-left:35px;"/>
 							</td>
@@ -115,6 +143,7 @@ $html = '
 								<span class="kopsedang">YAYASAN PERGURUAN</span><br/>
 
 								<span class="kopsedang">INSTITUT PENGEMBANGAN PENDIDIKAN INDONESIA</span><br/>';
+		
 		$it=($data['cabang']=="CAKUNG")?"SEKOLAH MENENGAH ATAS (SMA) YP IPPI ":"SEKOLAH MENENGAH ATAS (SMA) YP IPPI ";
 		$html.= '<span class="kopsedang">'.$it.strtoupper($cabang).'</span><br/>';
 $html.=	'
@@ -131,11 +160,13 @@ $html.=	'
 							</td>
 						</tr>
 				</table>
-				<div></div>
-				<table class="fontnormal" border="0">
+				<div></div>';
+			}
+			$hr=($data['cabang']=="CAKUNG")?"":"<hr style=border-width:2px; width:100%;>";
+			$html.='	<table class="fontnormal" border="0">
 						<tr>
 							<td colspan="3">
-								<hr style="border-width:2px; width:100%;">
+								'.$hr.'
 							</td>
 						</tr>
 						<tr align="center">
@@ -146,7 +177,8 @@ $html.=	'
 
 			$html.=$judulskl;
 			$html.='<br/><span>TAHUN PELAJARAN 2020/2021</span>';
-			$html.='<br>Nomor:';
+			$nomorsklsma = ($data['cabang']=="CAKUNG")?" 205/A-YP-IPPI/V/2021":" 165/SK-AP/V/2021";
+			$html.='<br>Nomor:'.$nomorsklsma;
 
 $html.='				
 							</td>
@@ -335,7 +367,7 @@ $html.='
 							</table>
 						</div>';
 	
-		$sklsalin=($data['cabang']=="PETOJO")?'<div style="background-color:#3c763d; color:white; padding:10px;">Ini adalah tampilan salinan SKL. SKL asli akan dibagikan pada saat pembagian rapor.</div>':"";
+		$sklsalin=($data['cabang']=="PETOJO")?'<div style="background-color:#eed202; color:black; padding:10px; font-size:15px;">Ini adalah tampilan salinan SKL. SKL asli akan dibagikan pada saat pembagian rapor.</div>':"";
 		$html.='
 						<div style="margin:0px 40px 0px 40px;" class="fontnormal" align="justify"><br/>
 							Surat keterangan ini bersifat sementara sampai dikeluarkannya ijazah.
@@ -345,9 +377,8 @@ $html.='
 						<div>
 							<table width="100%" border="-" class="ttd fontnormal">
 								<tr>
-									<td width="40%"></td>
-									<td width="54%">'.$sklsalin.'</td>
-									<td width="38%" style="padding-left:30px;">
+									<td width="60%" colspan="2">'.$sklsalin.'</td>
+									<td width="40%" style="padding-left:30px;">
 									<div>Jakarta, 3 Mei 2021</div>';
 
 	
