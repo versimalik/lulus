@@ -620,7 +620,7 @@ Keterangan Lulus </h3>
             <input type="text" name="nisn" class="form-control" placeholder="NISN" required>
             <input type="text" name="nomor" class="form-control" placeholder="No. Ujian : U0101XXXXXXXXX / 03-01-XX-XX-XXX-XXX-XX" required>
             <!-- <span class="input-group-btn"> -->
-                <button class="btn btn-primary btn-block" type="submit" name="submit">Periksa!</button>
+                <button class="btn btn-primary btn-block" type="submit" name="submit">Cek nilai</button>
             <!-- </span> -->
         </div>
     </form>
