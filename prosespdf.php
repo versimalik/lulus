@@ -115,7 +115,7 @@ $html = '
 								<span class="kopsedang">YAYASAN PERGURUAN</span><br/>
 
 								<span class="kopsedang">INSTITUT PENGEMBANGAN PENDIDIKAN INDONESIA</span><br/>';
-		$it=($data['cabang']=="CAKUNG")?"SEKOLAH MENENGAH ATAS ISLAM TERPADU (SMA IT) YP IPPI ":"SEKOLAH MENENGAH ATAS (SMA) YP IPPI ";
+		$it=($data['cabang']=="CAKUNG")?"SEKOLAH MENENGAH ATAS (SMA) YP IPPI ":"SEKOLAH MENENGAH ATAS (SMA) YP IPPI ";
 		$html.= '<span class="kopsedang">'.$it.strtoupper($cabang).'</span><br/>';
 $html.=	'
 
@@ -151,7 +151,7 @@ $html.=	'
 $html.='				
 							</td>
 						</tr>';
-$skolah = ($data['cabang']=="CAKUNG")?"Islam Terpadu YP IPPI Cakung":"YP IPPI Petojo";
+$skolah = ($data['cabang']=="CAKUNG")?"YP IPPI Cakung":"YP IPPI Petojo";
 $html.='				<tr align="justify">
 							<td colspan="3">
 								<div style="margin:0px 40px 0px 40px;">';
@@ -193,7 +193,7 @@ $html.='
 											<td>:</td>
 											<td>'.$npsnsma.'</td>
 										</tr>';
-	$skolah2=($data['cabang']=="CAKUNG"?"SMA IT YP IPPI Cakung":"SMA YP IPPI Petojo");
+	$skolah2=($data['cabang']=="CAKUNG"?"SMA YP IPPI Cakung":"SMA YP IPPI Petojo");
  
 	$html.='						</tr>
 									</table>
@@ -354,9 +354,8 @@ $html.='
 
 $kepseksma=($data['cabang']=="CAKUNG")?"Asmiliyah, S.Pd":"Yusup Abdul Azis, S.Pd.I";
 $nipkepseksma=($data['cabang']=="CAKUNG")?"NIP.-":"NUPTK. 7052764665200010";
-$kepalasma = ($data['cabang']=="CAKUNG")?" IT":"";
 $html.='										
-										<div>Kepala SMA'.$kepalasma.'</div>
+										<div>Kepala SMA</div>
 										<!-- <div style="margin-top:30px;"><img src="img/ttdpakyusuf.jpeg" height="90"/></div>-->
 										<div style="margin-top:50px;">'.$kepseksma.'</div>
 										<div>'.$nipkepseksma.'</div>
