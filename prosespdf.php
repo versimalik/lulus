@@ -156,7 +156,7 @@ $html.='				<tr align="justify">
 							<td colspan="3">
 								<div style="margin:0px 40px 0px 40px;">';
 		$html.='Yang bertanda tangan di bawah ini Kepala Sekolah Menengah Atas '.$skolah.', menerangkan dengan sesungguhnya bahwa :';					
-
+$npsnsma = ($data['cabang']=="CAKUNG")?"20103501":"20100215";
 $html.='							
 									
 								</div>';
@@ -191,7 +191,7 @@ $html.='
 										<tr>
 											<td>NPSN</td>
 											<td>:</td>
-											<td>20100215</td>
+											<td>'.$npsnsma.'</td>
 										</tr>';
 	$skolah2=($data['cabang']=="CAKUNG"?"SMA IT YP IPPI Cakung":"SMA YP IPPI Petojo");
  
