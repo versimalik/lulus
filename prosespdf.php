@@ -377,8 +377,8 @@ $html.='
 						<div>
 							<table width="100%" border="-" class="ttd fontnormal">
 								<tr>
-									<td width="60%" colspan="2">'.$sklsalin.'</td>
-									<td width="40%" style="padding-left:30px;">
+									<td width="70%" colspan="2">'.$sklsalin.'</td>
+									<td width="30%" style="padding-left:30px;">
 									<div>Jakarta, 3 Mei 2021</div>';
 
 	

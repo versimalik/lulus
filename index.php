@@ -604,7 +604,7 @@ Keterangan Lulus </h3>
 		}
 		else 
 		{
-			echo 'nomor ujian yang anda inputkan tidak ditemukan! periksa kembali nomor ujian anda.';
+			echo 'Nomor ujian yang anda masukkan tidak ditemukan! periksa kembali nomor ujian anda.';
 			//tampilkan pop-up dan kembali tampilkan form
 		}
 	}
@@ -618,7 +618,7 @@ Keterangan Lulus </h3>
         <div class="input-group">
             <!-- <input type="text" name="nomor" class="form-control" data-mask="01-01-0058-9999-9" placeholder="Nomor Ujian" required> -->
             <input type="text" name="nisn" class="form-control" placeholder="NISN" required>
-            <input type="text" name="nomor" class="form-control" placeholder="No. Ujian : K0101XXXXXXXXX / 01-0517-XXXX-X" required>
+            <input type="text" name="nomor" class="form-control" placeholder="No. Ujian : U0101XXXXXXXXX / 03-01-XX-XX-XXX-XXX-XX" required>
             <!-- <span class="input-group-btn"> -->
                 <button class="btn btn-primary btn-block" type="submit" name="submit">Periksa!</button>
             <!-- </span> -->
