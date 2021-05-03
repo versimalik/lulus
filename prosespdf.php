@@ -188,7 +188,7 @@ $html.='				<tr align="justify">
 							<td colspan="3">
 								<div style="margin:0px 40px 0px 40px;">';
 		$html.='Yang bertanda tangan di bawah ini Kepala Sekolah Menengah Atas '.$skolah.', menerangkan dengan sesungguhnya bahwa :';					
-$npsnsma = ($data['cabang']=="CAKUNG")?"20103501":"20100215";
+$npsnsma = ($data['cabang']=="CAKUNG")?"20103295":"20100215";
 $html.='							
 									
 								</div>';
@@ -372,7 +372,7 @@ $html.='
 						<div style="margin:0px 40px 0px 40px;" class="fontnormal" align="justify"><br/>
 							Surat keterangan ini bersifat sementara sampai dikeluarkannya ijazah.
 							<br><br>
-							Demikian surat keterangan ini diberikan agar dapat digunakan sebagaimana mestinya, apabila di kemudian hari terdapat kekeliruan, maka akan dilakukan perbaikan atau Surat Keterangan ini tidak berlaku.
+							Demikian surat keterangan ini diberikan agar dapat digunakan sebagaimana mestinya. Apabila di kemudian hari terdapat kekeliruan, maka akan dilakukan perbaikan atau Surat Keterangan ini tidak berlaku.
 						</div>						
 						<div>
 							<table width="100%" border="-" class="ttd fontnormal">
