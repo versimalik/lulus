@@ -668,7 +668,7 @@ elseif ($data['instansi']=="SMK")
 				</tr>
 				<tr>
 					<td class="text-center">2</td>
-					<td>Pendidikan Jasmasni, Olah Raga dan Kesehatan</td>
+					<td>Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
 					<td class="text-center">'.$data['n_penj'].'</td>
 				</tr>				
 				<tr>
@@ -992,7 +992,7 @@ elseif ($data['instansi']=="SMK")
 				</tr>
 				<tr>
 					<td class="text-center">2</td>
-					<td>Pendidikan Jasmasni, Olah Raga dan Kesehatan</td>
+					<td>Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
 					<td class="text-center">'.$data['n_penj'].'</td>
 				</tr>				
 				<tr>
@@ -1325,7 +1325,7 @@ elseif ($data['instansi']=="SMP")
 				</tr>
 				<tr>
 					<td class="text-center">2</td>
-					<td>Pendidikan Jasmasni, Olah Raga dan Kesehatan</td>
+					<td>Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
 					<td class="text-center">'.$data['n_penj'].'</td>
 				</tr>				
 				<tr>
@@ -1616,7 +1616,7 @@ elseif ($data['instansi']=="SMP")
 				</tr>
 				<tr>
 					<td class="text-center">2</td>
-					<td>Pendidikan Jasmasni, Olah Raga dan Kesehatan</td>
+					<td>Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
 					<td class="text-center">'.$data['n_penj'].'</td>
 				</tr>				
 				<tr>
