@@ -99,7 +99,7 @@ Keterangan Lulus </h3>
 							</tr>
 							<tr>
 								<td>Sekolah</td>
-								<td><?php echo ($data['cabang']=="cakung")?"SMP YP IPPI Cakung":"SMP YP IPPI Petojo"; ?></td>
+								<td><?php echo ($data['cabang']=="CAKUNG")?"SMP YP IPPI Cakung":"SMP YP IPPI Petojo"; ?></td>
 							</tr>
 							<tr>
 								<td>Nama Siswa</td>
