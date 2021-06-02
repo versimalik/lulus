@@ -79,7 +79,7 @@ Keterangan Lulus </h3>
 
 			$belum = '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['instansi']).' belum tersedia.</div>';
 
-			if($data['instansi']=="smp")
+			if($data['instansi']=="SMP")
 			{
 				if($carismp==0)
 				{
@@ -96,6 +96,10 @@ Keterangan Lulus </h3>
 							<tr>
 								<td>NISN</td>
 								<td><?php echo $data['nisn']; ?></td>
+							</tr>
+							<tr>
+								<td>Sekolah</td>
+								<td><?php echo ($data['cabang']=="cakung")?"SMP YP IPPI Cakung":"SMP YP IPPI Petojo"; ?></td>
 							</tr>
 							<tr>
 								<td>Nama Siswa</td>
@@ -150,20 +154,54 @@ Keterangan Lulus </h3>
 								<td colspan="3" class="text-center">Kelompok B</td>
 							</tr>
 							<tr>
-								<td>7</td>
+								<td>1</td>
 								<td>Seni Budaya</td>
 								<td class="text-center"><?php echo $data['n_sen']; ?></td>
 							</tr>
 							<tr>
-								<td>8</td>
+								<td>2</td>
 								<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
 								<td class="text-center"><?php echo $data['n_penj']; ?></td>
 							</tr>				
 							<tr>
-								<td>9</td>
+								<td>3</td>
 								<td>Prakarya
 								<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
 							</tr>
+<?php
+
+if ($data['cabang']=='CAKUNG') {
+?>
+
+							<tr>
+								<td colspan="3" class="text-center">Kelompok C</td>
+							</tr>
+							<tr>
+								<td class="text-center">1</td>
+								<td>TIK</td>
+								<td class="text-center"><?php echo $data['n_tik']; ?></td>
+							</tr>
+							<tr>
+								<td class="text-center">2</td>
+								<td>Aqidah</td>
+								<td class="text-center"><?php echo $data['n_aqidah']; ?></td>
+							</tr>				
+							<tr>
+								<td class="text-center">3</td>
+								<td>Bahasa Arab</td>
+								<td class="text-center"><?php echo $data['n_barab']; ?></td>
+							</tr>
+							<tr>
+								<td class="text-center">4</td>
+								<td>Tahfidz</td>
+								<td class="text-center"><?php echo $data['n_tahfidz']; ?></td>
+							</tr>
+
+<?php
+}
+
+?>
+							
 						</table>
 						
 <?php
@@ -380,7 +418,7 @@ Keterangan Lulus </h3>
 					}
 				}
 			}
-			elseif($data['instansi']=="smk")
+			elseif($data['instansi']=="SMK")
 			{
 				if($carismk==0)
 				{
@@ -420,7 +458,7 @@ Keterangan Lulus </h3>
 									}
 									elseif ($data['komli']=="AP")
 									{
-										$jur = "Otomatisasi dan Tata Kelola Perkantoran";
+										$jur = "Otomatisasi Tata Kelola Perkantoran";
 									}
 									elseif ($data['komli']=="AK")
 									{
@@ -436,51 +474,41 @@ Keterangan Lulus </h3>
 					</table>
 					<table class="table table-bordered">
 						<tr>
-							<td class="text-center" rowspan="2" style="vertical-align: middle;">No</td>
-							<td class="text-center" rowspan="2" style="vertical-align: middle;">Mata Pelajaran</td>
-							<td class="text-center" colspan="2">Nilai</td>
+							<td class="text-center" style="vertical-align: middle;">No</td>
+							<td class="text-center" style="vertical-align: middle;">Mata Pelajaran</td>
+							<td class="text-center">Nilai Ujian Sekolah</td>
 						</tr>
 						<tr>
-							<td class="text-center">Rata-Rata Raport</td>
-							<td class="text-center">Ujian Sekolah</td>
-						</tr>
-						<tr>
-							<td colspan="4">A. Muatan Nasional</td>
+							<td colspan="3">A. Muatan Nasional</td>
 						</tr>
 						<tr>
 							<td>1</td>
 							<td>Pendidikan Agama dan Budi Pekerti</td>
-							<td class="text-center"><?php echo $data['r_pai']; ?></td>
 							<td class="text-center"><?php echo $data['n_pai']; ?></td>
 						</tr>
 						<tr>
 							<td>2</td>
 							<td>Pendidikan Kewarganegaraan</td>
-							<td class="text-center"><?php echo $data['r_pkn']; ?></td>
 							<td class="text-center"><?php echo $data['n_pkn']; ?></td>
 						</tr>
 						<tr>
 							<td>3</td>
 							<td>Bahasa Indonesia</td>
-							<td class="text-center"><?php echo $data['r_bindo']; ?></td>
 							<td class="text-center"><?php echo $data['n_bindo']; ?></td>
 						</tr>
 						<tr>
 							<td>4</td>
 							<td>Matematika</td>
-							<td class="text-center"><?php echo $data['r_mtk']; ?></td>
 							<td class="text-center"><?php echo $data['n_mtk']; ?></td>
 						</tr>
 						<tr>
 							<td>5</td>
 							<td>Sejarah Indonesia</td>
-							<td class="text-center"><?php echo $data['r_sejin']; ?></td>
 							<td class="text-center"><?php echo $data['n_sejin']; ?></td>
 						</tr>
 						<tr>
 							<td>6</td>
 							<td>Bahasa Inggris</td>
-							<td class="text-center"><?php echo $data['r_bing']; ?></td>
 							<td class="text-center"><?php echo $data['n_bing']; ?></td>
 						</tr>
 						<tr>
@@ -489,13 +517,11 @@ Keterangan Lulus </h3>
 						<tr>
 							<td>7</td>
 							<td>Seni Budaya</td>
-							<td class="text-center"><?php echo $data['r_sen']; ?></td>
 							<td class="text-center"><?php echo $data['n_sen']; ?></td>
 						</tr>
 						<tr>
 							<td>8</td>
 							<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
-							<td class="text-center"><?php echo $data['r_penj']; ?></td>
 							<td class="text-center"><?php echo $data['n_penj']; ?></td>
 						</tr>
 						<tr>
@@ -507,7 +533,6 @@ Keterangan Lulus </h3>
 						<tr>
 							<td>9</td>
 							<td>Simulasi Digital</td>
-							<td class="text-center"><?php echo $data['r_simdig']; ?></td>
 							<td class="text-center"><?php echo $data['n_simdig']; ?></td>
 						</tr>
 <?php
@@ -517,13 +542,11 @@ Keterangan Lulus </h3>
 						<tr>
 							<td>10</td>
 							<td>Fisika</td>
-							<td class="text-center"><?php echo $data['r_fis']; ?></td>
 							<td class="text-center"><?php echo $data['n_fis']; ?></td>
 						</tr>
 						<tr>
 							<td>11</td>
 							<td>Kimia</td>
-							<td class="text-center"><?php echo $data['r_kim']; ?></td>
 							<td class="text-center"><?php echo $data['n_kim']; ?></td>
 						</tr>
 <?php
@@ -534,19 +557,16 @@ Keterangan Lulus </h3>
 						<tr>
 							<td>10</td>
 							<td>Ekonomi Bisnis</td>
-							<td class="text-center"><?php echo $data['r_ekob']; ?></td>
 							<td class="text-center"><?php echo $data['n_ekob']; ?></td>
 						</tr>
 						<tr>
 							<td>11</td>
 							<td>Administrasi Umum</td>
-							<td class="text-center"><?php echo $data['r_admu']; ?></td>
 							<td class="text-center"><?php echo $data['n_admu']; ?></td>
 						</tr>
 						<tr>
 							<td>12</td>
 							<td>IPA</td>
-							<td class="text-center"><?php echo $data['r_ipa']; ?></td>
 							<td class="text-center"><?php echo $data['n_ipa']; ?></td>
 						</tr>
 <?php
@@ -554,12 +574,10 @@ Keterangan Lulus </h3>
 ?>
 						<tr>
 							<td colspan="2">C2. Dasar Program Keahlian</td>
-							<td class="text-center"><?php echo $data['r_c2']; ?></td>
 							<td class="text-center"><?php echo $data['n_c2']; ?></td>
 						</tr>
 						<tr>
 							<td colspan="2">C3. Kompetensi Keahlian</td>
-							<td class="text-center"><?php echo $data['r_c3']; ?></td>
 							<td class="text-center"><?php echo $data['n_c3']; ?></td>
 						</tr>			
 					</table>
