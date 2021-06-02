@@ -529,7 +529,7 @@ elseif ($data['instansi']=="SMK")
 						text-align: center;
 						font-size:16px;
 						border: dotted 3px black;
-						margin-left: 270px;
+						margin-left: 220px;
 						margin-top: 25px;
 					}
 				</style>
@@ -856,7 +856,7 @@ elseif ($data['instansi']=="SMK")
 						text-align: center;
 						font-size:16px;
 						border: dotted 3px black;
-						margin-left: 270px;
+						margin-left: 220px;
 						margin-top: 25px;
 					}
 				</style>
@@ -1186,7 +1186,7 @@ elseif ($data['instansi']=="SMP")
 						text-align: center;
 						font-size:16px;
 						border: dotted 3px black;
-						margin-left: 270px;
+						margin-left: 220px;
 						margin-top: 25px;
 					}
 				</style>
@@ -1481,7 +1481,7 @@ elseif ($data['instansi']=="SMP")
 						text-align: center;
 						font-size:16px;
 						border: dotted 3px black;
-						margin-left: 270px;
+						margin-left: 220px;
 						margin-top: 25px;
 					}
 				</style>
