@@ -975,7 +975,7 @@ elseif ($data['instansi']=="SMK")
 				<tr>
 					<td class="text-center">5</td>
 					<td>Sejarah Indonesia</td>
-					<td class="text-center">'.$data['n_sej'].'</td>
+					<td class="text-center">'.$data['n_sejin'].'</td>
 				</tr>
 				<tr>
 					<td class="text-center">6</td>
