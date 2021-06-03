@@ -47,6 +47,11 @@ if(mysqli_num_rows($hasil) > 0)
 			$proli = "Bisnis dan Pemasaran";
 			$komli = "Bisnis Daring dan Pemasaran";
 			break;
+
+		case 'TKRO':
+			$proli = "Teknik Otomotif";
+			$komli = "Teknik Kendaraan Ringan dan Otomotif";
+			break;
 		
 		default:
 			$proli = "";
@@ -679,7 +684,7 @@ elseif ($data['instansi']=="SMK")
 					<td>Simulasi dan Komunikasi Digital</td>
 					<td class="text-center">'.$data['n_simdig'].'</td>
 				</tr>';
-		if ($data['komli']=="TKJ")
+		if ($data['komli']=="TKJ" || $data['komli']=="TKRO")
 		{
 			$html.='
 

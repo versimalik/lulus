@@ -468,6 +468,10 @@ if ($data['cabang']=='CAKUNG') {
 									{
 										$jur = "Bisnis Daring dan Pemasaran";
 									}
+									elseif ($data['komli']=="TKRO")
+									{
+										$jur = "Teknik Kendaraan Ringan dan Otomotif";
+									}
 ?>
 							<td><?php echo $jur; ?></td>
 						</tr>
@@ -536,7 +540,7 @@ if ($data['cabang']=='CAKUNG') {
 							<td class="text-center"><?php echo $data['n_simdig']; ?></td>
 						</tr>
 <?php
-							if($data['komli']=="TKJ")
+							if($data['komli']=="TKJ" || $data['komli']=="TKRO")
 							{
 ?>
 						<tr>
