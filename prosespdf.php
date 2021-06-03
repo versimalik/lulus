@@ -888,7 +888,7 @@ elseif ($data['instansi']=="SMK")
 							<td colspan="3" style="line-height: 1;">
 								<strong>
 									<span>SURAT KETERANGAN LULUS</span><br>
-									<span>NOMOR: Nomor surat belum ada</span>
+									<span>NOMOR: 185/SK/E/VI/2021</span>
 								</strong>
 							</td>
 						</tr>

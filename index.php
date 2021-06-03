@@ -214,7 +214,7 @@ if ($data['cabang']=='CAKUNG') {
 							echo '<div class="alert alert-danger" role="alert"><strong>MAAF !</strong> Anda dinyatakan TIDAK LULUS.</div>';
 						}
 
-						if($sklsma==0)
+						if($sklsmp==0)
 						{
 							echo '<div class="alert alert-danger" role="alert">Pencetakan SKL untuk '.strtoupper($data['instansi']).' belum tersedia. Mohon tunggu informasi selanjutnya!</div>';
 						}
