@@ -87,6 +87,14 @@ Keterangan Lulus </h3>
 				}
 				else
 				{
+					if($data['skl']==0)
+					{
+						echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
+
+						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas atau wakil kepsek bidang kurikulum!</div>';
+					}
+					else
+					{
 ?>
 					<table class="table table-bordered">
 							<tr>
@@ -169,6 +177,7 @@ Keterangan Lulus </h3>
 								<td class="text-center"><?php echo $data['n_pkwu']; ?></td>
 							</tr>
 <?php
+					
 
 if ($data['cabang']=='CAKUNG') {
 ?>
@@ -229,6 +238,7 @@ if ($data['cabang']=='CAKUNG') {
 <?php
 						}?>
 <?php
+					}
 				}
 			}
 			elseif ($data['instansi']=="SMA")
@@ -243,7 +253,7 @@ if ($data['cabang']=='CAKUNG') {
 					{
 						// echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
 
-						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
+						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas atau wakil kepsek bidang kurikulum!</div>';
 					}
 					else
 					{
@@ -430,7 +440,7 @@ if ($data['cabang']=='CAKUNG') {
 					{
 						echo '<div class="alert alert-success" role="alert"><strong>SELAMAT !</strong> Anda dinyatakan LULUS.</div>';
 
-						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas!</div>';
+						echo '<div class="alert alert-danger" role="alert">Daftar Nilai untuk '.strtoupper($data['nama']).' belum tersedia, silahkan hubungi wali kelas atau wakil kepsek bidang kurikulum!</div>';
 					}
 					else
 					{
