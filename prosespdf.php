@@ -1518,7 +1518,7 @@ elseif ($data['instansi']=="SMP")
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
 								<span>TAHUN PELAJARAN 2020/2021</span><br>
-								<span>NOMOR: Nomor surat belum ada</span>
+								<span>NOMOR: 146/SK-PP/VI/2021</span>
 							</td>
 						</tr>
 						<tr align="justify">
