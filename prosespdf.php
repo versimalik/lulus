@@ -220,8 +220,8 @@ $html.=	'
 			$judulskl = ($data['instansi']=="SMA" ? ($data['komli']=="IPA" ? "PEMINATAN MATEMATIKA DAN ILMU PENGETAHUAN ALAM (MIPA)" : "PEMINATAN ILMU PENGETAHUAN SOSIAL (IPS)") : "LAIN");
 
 			$html.=$judulskl;
-			$html.='<br/><span>TAHUN PELAJARAN 2020/2021</span>';
-			$nomorsklsma = ($data['cabang']=="CAKUNG")?" 205/A-YP-IPPI/V/2021":" 165/SK-AP/V/2021";
+			$html.='<br/><span>TAHUN PELAJARAN 2021/2022</span>';
+			$nomorsklsma = ($data['cabang']=="CAKUNG")?" ":" 111/SK-AP/IV/2022";
 			$html.='<br>Nomor:'.$nomorsklsma;
 
 $html.='				
@@ -411,7 +411,7 @@ $html.='
 							</table>
 						</div>';
 	
-		$sklsalin=($data['cabang']=="PETOJO")?'<div style="background-color:#eed202; color:black; padding:10px; font-size:15px;">Ini adalah tampilan salinan SKL. SKL asli akan dibagikan pada saat pembagian rapor.</div>':"";
+// 		$sklsalin=($data['cabang']=="PETOJO")?'<div style="background-color:#eed202; color:black; padding:10px; font-size:15px;">Ini adalah tampilan salinan SKL. SKL asli akan dibagikan pada saat pembagian rapor.</div>':"";
 		$html.='
 						<div style="margin:0px 40px 0px 40px;" class="fontnormal" align="justify"><br/>
 							Surat keterangan ini bersifat sementara sampai dikeluarkannya ijazah.
@@ -423,7 +423,7 @@ $html.='
 								<tr>
 									<td width="70%" colspan="2">'.$sklsalin.'</td>
 									<td width="30%" style="padding-left:30px;">
-									<div>Jakarta, 3 Mei 2021</div>';
+									<div>Jakarta, 5 Mei 2022</div>';
 
 	
 
@@ -569,7 +569,7 @@ elseif ($data['instansi']=="SMK")
 						<tr align="center">
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
-								<span>TAHUN PELAJARAN 2020/2021</span><br>
+								<span>TAHUN PELAJARAN 2021/2022</span><br>
 								<span>NOMOR: 251/K. YP IPPI/VI/2021</span>
 							</td>
 						</tr>
@@ -1226,7 +1226,7 @@ elseif ($data['instansi']=="SMP")
 						<tr align="center">
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
-								<span>TAHUN PELAJARAN 2020/2021</span><br>
+								<span>TAHUN PELAJARAN 2021/2022</span><br>
 								<span>NOMOR: 145/P-YP-IPPI/VI/2021</span>
 							</td>
 						</tr>
@@ -1517,7 +1517,7 @@ elseif ($data['instansi']=="SMP")
 						<tr align="center">
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
-								<span>TAHUN PELAJARAN 2020/2021</span><br>
+								<span>TAHUN PELAJARAN 2021/2022</span><br>
 								<span>NOMOR: 146/SK-PP/VI/2021</span>
 							</td>
 						</tr>

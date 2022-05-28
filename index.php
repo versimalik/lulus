@@ -48,9 +48,8 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
     <div class="container">
         <!-- <h2 align="center">Pengumuman Kelulusan 
 <?=$hsl['tahun'] ?></h2> -->
-        <h3 align="center" style="font-weight: bold;">Pengumuman Surat 
-Keterangan Lulus </h3>
-        <h3 align="center" style="font-weight: bold;">YP IPPI Jakarta Tahun 2020/2021</h3>
+        <h3 align="center" style="font-weight: bold;">Pengumuman Kelulusan </h3>
+        <h3 align="center" style="font-weight: bold;">YP IPPI Jakarta Tahun Ajaran 2021/2022</h3>
 		<!-- countdown -->
 		
 		<div id="clock" class="lead"></div>
@@ -468,7 +467,7 @@ if ($data['cabang']=='CAKUNG') {
 									}
 									elseif ($data['komli']=="AP")
 									{
-										$jur = "Otomatisasi Tata Kelola Perkantoran";
+										$jur = "Otomatisasi dan Tata Kelola Perkantoran";
 									}
 									elseif ($data['komli']=="AK")
 									{
@@ -644,7 +643,7 @@ if ($data['cabang']=='CAKUNG') {
 	{
 		//tampilkan form input nomor ujian
 	?>
-    <p>Masukkan nomor ujianmu pada form yang disediakan.</p>
+    <p>Masukkan NISN dan nomor ujian pada form yang disediakan.</p>
     
     <form method="post">
         <div class="input-group">
