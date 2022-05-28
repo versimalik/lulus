@@ -67,7 +67,7 @@ $timestamp = strtotime($hsl['tgl_pengumuman']);
 		{
 			$data = mysqli_fetch_array($hasil);
 
-			$cabang = $hsl['cabang'];
+			// $cabang = $hsl['cabang'];
 			$carismp = $hsl['smpcari'];
 			$carisma = $hsl['smacari'];
 			$carismk = $hsl['smkcari'];
@@ -567,6 +567,39 @@ if ($data['cabang']=='CAKUNG') {
 							else
 							{
 ?>
+<?php 
+							if ($data['cabang']=='CAKUNG') {
+								
+?>
+						<tr>
+							<td>10</td>
+							<td>Ekonomi Bisnis</td>
+							<td class="text-center"><?php echo $data['n_ekob']; ?></td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>Administrasi Umum</td>
+							<td class="text-center"><?php echo $data['n_admu']; ?></td>
+						</tr>
+						<tr>
+							<td>12</td>
+							<td>IPA</td>
+							<td class="text-center"><?php echo $data['n_ipa']; ?></td>
+						</tr>
+						<tr>
+							<td>13</td>
+							<td>Matematika Terapan</td>
+							<td class="text-center"><?php echo $data['n_mtkt']; ?></td>
+						</tr>
+						<tr>
+							<td>14</td>
+							<td>English for Specific Purpose (ESP)</td>
+							<td class="text-center"><?php echo $data['n_esp']; ?></td>
+						</tr>
+
+<?php 
+							} else {
+ ?>
 						<tr>
 							<td>10</td>
 							<td>Ekonomi Bisnis</td>
@@ -583,6 +616,7 @@ if ($data['cabang']=='CAKUNG') {
 							<td class="text-center"><?php echo $data['n_ipa']; ?></td>
 						</tr>
 <?php
+									}
 							}
 ?>
 						<tr>
