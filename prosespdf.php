@@ -570,7 +570,7 @@ elseif ($data['instansi']=="SMK")
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
 								<span>TAHUN PELAJARAN 2021/2022</span><br>
-								<span>NOMOR: 251/K. YP IPPI/VI/2021</span>
+								<span>NOMOR: </span>
 							</td>
 						</tr>
 						<tr align="justify">
@@ -703,7 +703,9 @@ elseif ($data['instansi']=="SMK")
 		}
 		else
 		{
-			$html.='
+		    if($data['cabang']=='CAKUNG')
+		    {
+		        $html.='
 
 				<tr>
 					<td class="text-center">2</td>
@@ -716,22 +718,56 @@ elseif ($data['instansi']=="SMK")
 					<td class="text-center">'.$data['n_admu'].'</td>
 				</tr>
 				<tr>
-					<td class="text-center">3</td>
+					<td class="text-center">4</td>
 					<td>IPA</td>
 					<td class="text-center">'.$data['n_ipa'].'</td>
 				</tr>
+				<tr>
+					<td class="text-center">5</td>
+					<td>Matematika Terapan</td>
+					<td class="text-center">'.$data['n_mtkt'].'</td>
+				</tr>
+				<tr>
+					<td class="text-center">6</td>
+					<td>English for Specific Purpose</td>
+					<td class="text-center">'.$data['n_esp'].'</td>
+				</tr>
 
 
-			';
+			    ';
+		    }
+		    else
+		    {
+    			$html.='
+    
+    				<tr>
+    					<td class="text-center">2</td>
+    					<td>Ekonomi Bisnis</td>
+    					<td class="text-center">'.$data['n_ekob'].'</td>
+    				</tr>
+    				<tr>
+    					<td class="text-center">3</td>
+    					<td>Administrasi Umum</td>
+    					<td class="text-center">'.$data['n_admu'].'</td>
+    				</tr>
+    				<tr>
+    					<td class="text-center">3</td>
+    					<td>IPA</td>
+    					<td class="text-center">'.$data['n_ipa'].'</td>
+    				</tr>
+    
+    
+    			';
+		    }
 		}	
 				$html.='
 				<tr>
-					<td class="text-center">4</td>
+					<td class="text-center">C.2</td>
 					<td>Dasar Program Keahlian</td>
 					<td class="text-center">'.$data['n_c2'].'</td>
 				</tr>
 				<tr>
-					<td class="text-center">5</td>
+					<td class="text-center">C.3</td>
 					<td>Kompetensi Keahlian</td>
 					<td class="text-center">'.$data['n_c3'].'</td>
 				</tr>
@@ -756,7 +792,7 @@ elseif ($data['instansi']=="SMK")
 							</div>
 						</td>
 						<td width="35%" style="padding-left:30px;">
-							<div>Jakarta, 3 Juni 2021</div>
+							<div>Jakarta, 3 Juni 2022</div>
 							<div>Kepala Sekolah,</div>
 							<div style="margin-top:70px;">
 								<strong>
