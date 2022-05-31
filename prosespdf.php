@@ -50,7 +50,7 @@ if(mysqli_num_rows($hasil) > 0)
 
 		case 'TKRO':
 			$proli = "Teknik Otomotif";
-			$komli = "Teknik Kendaraan Ringan da Otomotif";
+			$komli = "Teknik Kendaraan Ringan Otomotif";
 			break;
 		
 		default:
@@ -627,7 +627,7 @@ elseif ($data['instansi']=="SMK")
 			<table class="tablenilai" width="100%">
 				<tr>
 					<td class="text-center" width="10%">No</td>
-					<td class="text-center" width="60%">Mata Pelajaran<br>(Kurikulum 2013)</td>
+					<td class="text-center" width="60%">Mata Pelajaran<br>(Kurikulum 2013 Revisi 2018)</td>
 					<td class="text-center" width="20%">Nilai Ujian Sekolah</td>
 				</tr>
 				<tr>
@@ -675,21 +675,6 @@ elseif ($data['instansi']=="SMK")
 					<td class="text-center">2</td>
 					<td>Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
 					<td class="text-center">'.$data['n_penj'].'</td>
-				</tr>
-				<tr>
-					<td class="text-center">3</td>
-					<td>Muatan Lokal</td>
-					<td class="text-center"></td>
-				</tr>
-				<tr>
-					<td class="text-center"></td>
-					<td>English for Secific Purpose</td>
-					<td class="text-center">'.$data['n_esp'].'</td>
-				</tr>
-				<tr>
-					<td class="text-center"></td>
-					<td>Matematika Terapan</td>
-					<td class="text-center">'.$data['n_mtkt'].'</td>
 				</tr>
 				<tr>
 					<td colspan="3">Muatan Peminatan Kejuruan</td>
@@ -774,6 +759,20 @@ elseif ($data['instansi']=="SMK")
 					<td class="text-center">C.3</td>
 					<td>Kompetensi Keahlian</td>
 					<td class="text-center">'.$data['n_c3'].'</td>
+				</tr><tr>
+					<td class="text-center"></td>
+					<td>Muatan Lokal</td>
+					<td class="text-center"></td>
+				</tr>
+				<tr>
+					<td class="text-center"></td>
+					<td>English for Secific Purpose</td>
+					<td class="text-center">'.$data['n_esp'].'</td>
+				</tr>
+				<tr>
+					<td class="text-center"></td>
+					<td>Matematika Terapan</td>
+					<td class="text-center">'.$data['n_mtkt'].'</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><strong>Rata-Rata</strong></td>
