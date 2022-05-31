@@ -759,18 +759,16 @@ elseif ($data['instansi']=="SMK")
 					<td class="text-center">C.3</td>
 					<td>Kompetensi Keahlian</td>
 					<td class="text-center">'.$data['n_c3'].'</td>
-				</tr><tr>
-					<td class="text-center"></td>
-					<td>Muatan Lokal</td>
-					<td class="text-center"></td>
+				</tr><tr>>
+					<td colspan=3>Muatan Lokal</td>
 				</tr>
 				<tr>
-					<td class="text-center"></td>
+					<td class="text-center">1</td>
 					<td>English for Secific Purpose</td>
 					<td class="text-center">'.$data['n_esp'].'</td>
 				</tr>
 				<tr>
-					<td class="text-center"></td>
+					<td class="text-center">2</td>
 					<td>Matematika Terapan</td>
 					<td class="text-center">'.$data['n_mtkt'].'</td>
 				</tr>
