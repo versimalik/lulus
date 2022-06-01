@@ -479,7 +479,7 @@ if ($data['cabang']=='CAKUNG') {
 									}
 									elseif ($data['komli']=="TKRO")
 									{
-										$jur = "Teknik Kendaraan Ringan dan Otomotif";
+										$jur = "Teknik Kendaraan Ringan Otomotif";
 									}
 ?>
 							<td><?php echo $jur; ?></td>

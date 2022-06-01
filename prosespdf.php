@@ -221,7 +221,7 @@ $html.=	'
 
 			$html.=$judulskl;
 			$html.='<br/><span>TAHUN PELAJARAN 2021/2022</span>';
-			$nomorsklsma = ($data['cabang']=="CAKUNG")?" ":" 111/SK-AP/IV/2022";
+			$nomorsklsma = ($data['cabang']=="CAKUNG")?" ":" 222/K. YP IPPI/V/2022";
 			$html.='<br>Nomor:'.$nomorsklsma;
 
 $html.='				
@@ -570,7 +570,7 @@ elseif ($data['instansi']=="SMK")
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
 								<span>TAHUN PELAJARAN 2021/2022</span><br>
-								<span>NOMOR: </span>
+								<span>NOMOR: 222/K. YP IPPI/V/2022</span>
 							</td>
 						</tr>
 						<tr align="justify">
@@ -601,9 +601,9 @@ elseif ($data['instansi']=="SMK")
 											<td>'.$data['nisn'].'</td>
 										</tr>
 										<tr>
-											<td>Program Keahlian</td>
-											<td>:</td>
-											<td>'.$proli.'</td>
+										    <td>Program Keahlian</td>
+										    <td>:</td>
+										    <td>'.$proli.'</td>
 										</tr>
 										<tr>
 											<td>Kompetensi Keahlian</td>
@@ -675,6 +675,20 @@ elseif ($data['instansi']=="SMK")
 					<td class="text-center">2</td>
 					<td>Pendidikan Jasmani, Olah Raga dan Kesehatan</td>
 					<td class="text-center">'.$data['n_penj'].'</td>
+				</tr>
+				<tr>
+				    <td rowspan=3 style="text-align: center; vertical-align: top;">3</td>
+					<td colspan=2>Muatan Lokal</td>
+				</tr>
+				<tr>
+					
+					<td>English for Secific Purpose</td>
+					<td class="text-center">'.$data['n_esp'].'</td>
+				</tr>
+				<tr>
+					
+					<td>Matematika Terapan</td>
+					<td class="text-center">'.$data['n_mtkt'].'</td>
 				</tr>
 				<tr>
 					<td colspan="3">Muatan Peminatan Kejuruan</td>
@@ -749,29 +763,36 @@ elseif ($data['instansi']=="SMK")
     			';
 		    }
 		}	
+		
+		        if ($data['komli']=="TKJ" || $data['komli']=="TKRO")
+		        {
+	            	$html.='
+            				<tr>
+            					<td class="text-center">4</td>
+            					<td>Dasar Program Keahlian</td>
+            					<td class="text-center">'.$data['n_c2'].'</td>
+            				</tr>
+            				<tr>
+            					<td class="text-center">5</td>
+            					<td>Kompetensi Keahlian</td>
+            					<td class="text-center">'.$data['n_c3'].'</td>
+            				</tr>';
+		        } else {
+		            $html.='
+            				<tr>
+            					<td class="text-center">5</td>
+            					<td>Dasar Program Keahlian</td>
+            					<td class="text-center">'.$data['n_c2'].'</td>
+            				</tr>
+            				<tr>
+            					<td class="text-center">6</td>
+            					<td>Kompetensi Keahlian</td>
+            					<td class="text-center">'.$data['n_c3'].'</td>
+            				</tr>';
+	            
+		        }
+		        
 				$html.='
-				<tr>
-					<td class="text-center">C.2</td>
-					<td>Dasar Program Keahlian</td>
-					<td class="text-center">'.$data['n_c2'].'</td>
-				</tr>
-				<tr>
-					<td class="text-center">C.3</td>
-					<td>Kompetensi Keahlian</td>
-					<td class="text-center">'.$data['n_c3'].'</td>
-				</tr><tr>>
-					<td colspan=3>Muatan Lokal</td>
-				</tr>
-				<tr>
-					<td class="text-center">1</td>
-					<td>English for Secific Purpose</td>
-					<td class="text-center">'.$data['n_esp'].'</td>
-				</tr>
-				<tr>
-					<td class="text-center">2</td>
-					<td>Matematika Terapan</td>
-					<td class="text-center">'.$data['n_mtkt'].'</td>
-				</tr>
 				<tr>
 					<td colspan="2" align="center"><strong>Rata-Rata</strong></td>
 					<td class="text-center">'.$data['rata'].'</td>
@@ -930,7 +951,7 @@ elseif ($data['instansi']=="SMK")
 							<td colspan="3" style="line-height: 1;">
 								<strong>
 									<span>SURAT KETERANGAN LULUS</span><br>
-									<span>NOMOR: 185/SK/E/VI/2021</span>
+									<span>NOMOR: </span>
 								</strong>
 							</td>
 						</tr>
@@ -1119,11 +1140,11 @@ elseif ($data['instansi']=="SMK")
 							</div>
 						</td>
 						<td width="35%" style="padding-left:30px;">
-							<div>Jakarta, 3 Juni 2021</div>
+							<div>Jakarta, 3 Juni 2022</div>
 							<div>Kepala Sekolah,</div>
 							<div style="margin-top:70px;">
 								<strong>
-									<u>Drs, Mukidjo Martoyo, M.Pd</u>
+									<u>Drs, Mukidjo Martoyo, M.Pd</u><br>
 									NIP.-
 								</strong>
 							</div>
@@ -1713,7 +1734,9 @@ elseif ($data['instansi']=="SMP")
 
 $dompdf->loadHtml($html);
 
-$dompdf->setPaper('A4', 'potrait');
+$customPaper = array(0,0,609.4488,935.433);
+
+$dompdf->setPaper($customPaper, 'potrait');
 
 $dompdf->render();
 
