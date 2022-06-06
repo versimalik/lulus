@@ -471,7 +471,7 @@ if ($data['cabang']=='CAKUNG') {
 									}
 									elseif ($data['komli']=="AK")
 									{
-										$jur = "Akuntansi Keuangan dan Lembaga";
+										$jur = "Akuntansi dan Keuangan Lembaga";
 									}
 									elseif ($data['komli']=="PM")
 									{
@@ -537,6 +537,22 @@ if ($data['cabang']=='CAKUNG') {
 							<td>Pendidikan Jasmani, Olahraga dan Kesehatan</td>
 							<td class="text-center"><?php echo $data['n_penj']; ?></td>
 						</tr>
+						<?php if($data['cabang']=='CAKUNG'){?>
+						<tr>
+						    <td>9</td>
+							<td colspan="9">Muatan Lokal</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>English for Specific Purpose (ESP)</td>
+							<td class="text-center"><?php echo $data['n_esp']; ?></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>Matematika Terapan</td>
+							<td class="text-center"><?php echo $data['n_mtkt']; ?></td>
+						</tr>
+						<?php }?>
 						<tr>
 							<td colspan="4">C. Muatan Peminatan Kejuruan</td>
 						</tr>
@@ -544,7 +560,7 @@ if ($data['cabang']=='CAKUNG') {
 							<td colspan="4">C1. Bidang Keahlian</td>
 						</tr>
 						<tr>
-							<td>9</td>
+							<td><?= $nosimdig = ($data['cabang']=='CAKUNG')?10:9;?></td>
 							<td>Simulasi Digital</td>
 							<td class="text-center"><?php echo $data['n_simdig']; ?></td>
 						</tr>
@@ -650,7 +666,6 @@ if ($data['cabang']=='CAKUNG') {
 					else
 					{
 ?>
-
 						<form method="post" action="prosespdf.php">
 							<input type="hidden" name="nopes" value=<?php echo $data["no_ujian"]; ?>>
 							<input type="hidden" name="nisn" value=<?php echo $data["nisn"]; ?>>

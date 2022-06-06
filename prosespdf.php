@@ -951,7 +951,7 @@ elseif ($data['instansi']=="SMK")
 							<td colspan="3" style="line-height: 1;">
 								<strong>
 									<span>SURAT KETERANGAN LULUS</span><br>
-									<span>NOMOR: </span>
+									<span>NOMOR: 198/SK/E/VI/2022</span>
 								</strong>
 							</td>
 						</tr>
@@ -1140,7 +1140,7 @@ elseif ($data['instansi']=="SMK")
 							</div>
 						</td>
 						<td width="35%" style="padding-left:30px;">
-							<div>Jakarta, 3 Juni 2022</div>
+							<div>Jakarta, 6 Juni 2022</div>
 							<div>Kepala Sekolah,</div>
 							<div style="margin-top:70px;">
 								<strong>
