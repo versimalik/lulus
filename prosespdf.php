@@ -1285,7 +1285,7 @@ elseif ($data['instansi']=="SMP")
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
 								<span>TAHUN PELAJARAN 2021/2022</span><br>
-								<span>NOMOR: 145/P-YP-IPPI/VI/2021</span>
+								<span>NOMOR: ---</span>
 							</td>
 						</tr>
 						<tr align="justify">
@@ -1440,7 +1440,7 @@ elseif ($data['instansi']=="SMP")
 							</div>
 						</td>
 						<td width="35%" style="padding-left:30px;">
-							<div>Jakarta, 7 Juni 2021</div>
+							<div>Jakarta, 15 Juni 2022</div>
 							<div>Kepala SMP YP IPPI Cakung</div>
 							<div style="margin-top:70px;">
 								<strong>
@@ -1576,7 +1576,7 @@ elseif ($data['instansi']=="SMP")
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
 								<span>TAHUN PELAJARAN 2021/2022</span><br>
-								<span>NOMOR: 146/SK-PP/VI/2021</span>
+								<span>NOMOR: ---</span>
 							</td>
 						</tr>
 						<tr align="justify">
@@ -1708,7 +1708,7 @@ elseif ($data['instansi']=="SMP")
 							</div>
 						</td>
 						<td width="35%" style="padding-left:30px;">
-							<div>Jakarta, 4 Juni 2021</div>
+							<div>Jakarta, 15 Juni 2022</div>
 							<div>Kepala SMP YP IPPI Petojo</div>
 							<div style="margin-top:70px;">
 								<strong>
