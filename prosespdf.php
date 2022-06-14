@@ -1403,11 +1403,6 @@ elseif ($data['instansi']=="SMP")
 					<td class="text-center">1</td>
 					<td>TIK</td>
 					<td class="text-center">'.$data['n_tik'].'</td>
-				</tr>
-				<tr>
-					<td class="text-center">2</td>
-					<td>Aqidah</td>
-					<td class="text-center">'.$data['n_aqidah'].'</td>
 				</tr>				
 				<tr>
 					<td class="text-center">3</td>
@@ -1421,7 +1416,7 @@ elseif ($data['instansi']=="SMP")
 				</tr>
 				<tr>
 					<td colspan="2" align="center"><strong>Rata-Rata</strong></td>
-					<td class="text-center">'.number_format($rataCakung,2).'</td>
+					<td class="text-center">'.$data['rata'].'</td>
 				</tr>
 			</table>
 
