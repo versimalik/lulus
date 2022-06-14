@@ -1405,12 +1405,12 @@ elseif ($data['instansi']=="SMP")
 					<td class="text-center">'.$data['n_tik'].'</td>
 				</tr>				
 				<tr>
-					<td class="text-center">3</td>
+					<td class="text-center">2</td>
 					<td>Bahasa Arab</td>
 					<td class="text-center">'.$data['n_barab'].'</td>
 				</tr>
 				<tr>
-					<td class="text-center">4</td>
+					<td class="text-center">3</td>
 					<td>Tahfidz</td>
 					<td class="text-center">'.$data['n_tahfidz'].'</td>
 				</tr>

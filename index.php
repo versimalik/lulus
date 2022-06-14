@@ -188,19 +188,14 @@ if ($data['cabang']=='CAKUNG') {
 								<td class="text-center">1</td>
 								<td>TIK</td>
 								<td class="text-center"><?php echo $data['n_tik']; ?></td>
-							</tr>
-							<tr>
-								<td class="text-center">2</td>
-								<td>Aqidah</td>
-								<td class="text-center"><?php echo $data['n_aqidah']; ?></td>
 							</tr>				
 							<tr>
-								<td class="text-center">3</td>
+								<td class="text-center">2</td>
 								<td>Bahasa Arab</td>
 								<td class="text-center"><?php echo $data['n_barab']; ?></td>
 							</tr>
 							<tr>
-								<td class="text-center">4</td>
+								<td class="text-center">3</td>
 								<td>Tahfidz</td>
 								<td class="text-center"><?php echo $data['n_tahfidz']; ?></td>
 							</tr>
