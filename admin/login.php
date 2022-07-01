@@ -81,7 +81,7 @@ include "../database.php";
                    kemudian aktifkan (hapus tanda //) pada skrip: 
                         echo '<script>window.location("./");</script>';
                 */
-				header('Location: ./');
+				header('Location: ./data.php');
                 //echo '<script>window.location("./");</script>';
 			} else {
 				echo '<script>alert("Username dan Password tidak sesuai!");</script>';

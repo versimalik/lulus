@@ -1285,7 +1285,7 @@ elseif ($data['instansi']=="SMP")
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
 								<span>TAHUN PELAJARAN 2021/2022</span><br>
-								<span>NOMOR: ---</span>
+								<span>NOMOR: 141/P.YP.IPPI/VI/2022</span>
 							</td>
 						</tr>
 						<tr align="justify">
@@ -1439,7 +1439,7 @@ elseif ($data['instansi']=="SMP")
 							<div>Kepala SMP YP IPPI Cakung</div>
 							<div style="margin-top:70px;">
 								<strong>
-									<u>Drs. Marsono</u>
+									<u>Drs. Marsono, M.Pd</u>
 								</strong>
 							</div>
 						</td>
@@ -1571,7 +1571,7 @@ elseif ($data['instansi']=="SMP")
 							<td colspan="3" style="line-height: 1;">
 								<span>SURAT KETERANGAN LULUS</span><br>
 								<span>TAHUN PELAJARAN 2021/2022</span><br>
-								<span>NOMOR: ---</span>
+								<span>NOMOR: 137/SK-PP/VI/2022</span>
 							</td>
 						</tr>
 						<tr align="justify">
